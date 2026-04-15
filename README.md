@@ -1,7 +1,7 @@
 # GhostReader
 
 [![Release](https://img.shields.io/github/v/release/madeinplutofabio/ghost-reader?include_prereleases&label=release&color=blue)](https://github.com/madeinplutofabio/ghost-reader/releases)
-[![License: MIT](https://img.shields.io/github/license/madeinplutofabio/ghost-reader?color=green)](LICENSE)
+[![License](https://img.shields.io/github/license/madeinplutofabio/ghost-reader)](https://github.com/madeinplutofabio/ghost-reader/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Playwright](https://img.shields.io/badge/Playwright-Chromium-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/python/)
@@ -112,4 +112,10 @@ Other things on the near-term list:
 
 ## License
 
-MIT.
+Apache 2.0.
+
+---
+
+Maintained by [![Linkedin](https://i.sstatic.net/gVE0j.png) @fmsalvadori](https://www.linkedin.com/in/fmsalvadori/)
+&nbsp;
+[![GitHub](https://i.sstatic.net/tskMh.png) MadeInPluto](https://github.com/madeinplutofabio)
