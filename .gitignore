@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local cache & runtime artifacts
+*.sqlite3
+*.sqlite3-journal
+ghostreader_cache.sqlite3
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Env files
+.env
+.env.local
+
+# Playwright browsers (installed per-machine)
+.playwright/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
