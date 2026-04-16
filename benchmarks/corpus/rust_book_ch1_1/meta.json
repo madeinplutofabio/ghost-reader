@@ -1,0 +1,13 @@
+{
+  "byte_length": 30474,
+  "content_hash_sha256": "e00a33adc70a507778c3ec22bac45074dea329ad5a3c22b783485acf820a348d",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T23:06:42Z",
+  "final_url": "https://doc.rust-lang.org/book/ch01-01-installation.html",
+  "fixture_id": "rust_book_ch1_1",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://doc.rust-lang.org/book/ch01-01-installation.html",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

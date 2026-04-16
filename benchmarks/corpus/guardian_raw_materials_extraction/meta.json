@@ -1,0 +1,12 @@
+{
+  "byte_length": 316232,
+  "content_hash_sha256": "9df75f081d6bd4efe9d1f489a81fb5f456546d8fe7d0b4c96758c2f953683ec4",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T21:33:17Z",
+  "final_url": "https://www.theguardian.com/environment/2024/jan/31/raw-materials-extraction-2060-un-report",
+  "fixture_id": "guardian_raw_materials_extraction",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://www.theguardian.com/environment/2024/jan/31/raw-materials-extraction-2060-un-report",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

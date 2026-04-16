@@ -1,0 +1,4 @@
+# Ignore all per-run artifacts...
+*.json
+# ...except the committed baseline, which is the regression anchor.
+!v0.1.0-frozen-baseline.json

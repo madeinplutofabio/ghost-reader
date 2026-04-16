@@ -1,0 +1,12 @@
+{
+  "byte_length": 504763,
+  "content_hash_sha256": "b3c3f2f0316792a0b54b542156760d5a5946825bd7d02f865fcf2fc2d0c6e33e",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:50:55Z",
+  "final_url": "https://www.prisma.io/docs/orm",
+  "fixture_id": "prisma_docs_orm",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://www.prisma.io/docs/orm",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

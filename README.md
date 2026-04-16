@@ -5,11 +5,11 @@
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Playwright](https://img.shields.io/badge/Playwright-Chromium-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev/python/)
-[![Status](https://img.shields.io/badge/status-v0.1.0%20%E2%80%94%20local%20use-orange)](CHANGELOG.md)
+[![Status](https://img.shields.io/badge/status-v0.2.0%20%E2%80%94%20benchmarked-orange)](CHANGELOG.md)
 
 **A token-frugal web reader for AI agents.** Staged extraction skips the browser when it can — raw HTML first, then framework-embedded JSON, and only as a last resort a real Chromium render.
 
-> **Status: v0.1.0 — local / single-user.** This is the early proof of the idea. It's stable enough to run alongside your own agent work, but it isn't hardened for shared or production use yet. See the roadmap below.
+> **Status: v0.2.0 — local / single-user, with a benchmark harness.** v0.1.0 was the proof of the idea; v0.2.0 adds a regression net and the numbers below. Still not hardened for shared or production use. See the roadmap.
 
 ## Why it exists
 
@@ -31,6 +31,46 @@ A confidence score from a heuristic over the extracted text decides when to esca
 - **~5–10× lower latency on the cheap path** vs. browser-everything approaches (~300 ms vs. 2–5 s).
 - **Zero per-call cost**, no rate limits, no third party in your URL stream — unlike paid readers like Firecrawl or Jina.
 - **SQLite response cache** with TTL, so repeated reads of the same URL are free.
+
+## Benchmark
+
+v0.2.0 ships a small benchmark harness (`benchmarks/`) that runs the extractor against two fixture sets and scores quality and efficiency as separate questions. The committed numbers below describe **v0.1.0 extractor behavior, measured by the v0.2.0 harness** — no extractor logic or thresholds changed in this release; the harness exists so future changes can be measured rather than guessed.
+
+Two modes:
+
+- **Frozen mode** is the regression gate. It runs against stored HTML snapshots in `benchmarks/corpus/` so results are deterministic — no network, no Playwright. It exercises Stages 1 and 2 only; Stage 3 against a static snapshot would measure nothing real.
+- **Live mode** is a reality check. It fetches current URLs through the full pipeline including Stage 3, and is allowed to drift; it never fails the build.
+
+### Frozen baseline (27 fixtures across 10 categories)
+
+| approach | quality pass | mean chars | p50 latency |
+|---|---|---|---|
+| raw HTML dump | 14.8% | 91,086 | 7 ms |
+| GhostReader stages 1+2 | **100.0%** | **15,795** | 67 ms |
+
+Hand the model the raw HTML and 85% of fixtures fail quality (cookie banners, nav, "Create account" all leak through `forbidden_phrases`). Hand it GhostReader's frozen stages-1+2 output and quality is clean — at ~5.8× smaller payload. Method mix on the corpus: **88.9% raw_html, 11.1% best_effort, 0% embedded_data** — the best_effort cases are all edge/partial fixtures, not happy-path articles. Stage 2 is present in the pipeline but did not materially contribute on the current corpus; the threshold sweep shows it would fire if the Stage-1 acceptance bar were raised, which is a v0.3 follow-up.
+
+### Live reality check (4 fixtures, including 2 fetch-failure edges)
+
+The Playwright-only baseline column compares apples-to-apples: 2 `expected_fetch_failure` fixtures (a PDF and a real 404) are skipped from that column, because Chromium has no concept of refusing to render — it would download the PDF and render the 404 wrapper as if it were content. Both fixtures still run under GhostReader, which refuses them at the fetch boundary.
+
+| approach | quality pass | p50 latency | p95 latency | browser launches |
+|---|---|---|---|---|
+| Playwright-only baseline | 100.0% (2/2) | 4151 ms | 4188 ms | 2 |
+| GhostReader full | **100.0% (4/4)** | **561 ms** | **717 ms** | **0** |
+
+Both happy-path fixtures (a long-form Wikipedia article and the Next.js marketing homepage) were sufficient at Stage 1 — Stage 3 never fired. The PDF was refused with `HTTPException 415` in 580 ms; the dead Wikipedia URL surfaced as `httpx.HTTPStatusError 404` in 314 ms. Single snapshot, not a universal claim — but on this set, Playwright-only spent ~4 seconds doing what GhostReader handled in ~500 ms with near-identical extracted text size and the same quality on the comparable set.
+
+### Run it locally
+
+```bash
+python -m benchmarks.run --mode frozen           # regression gate, ~6s, no network
+python -m benchmarks.run --mode live             # reality check, fetches current URLs
+python -m benchmarks.run --baselines             # comparison tables vs raw-html / Playwright
+python -m benchmarks.run --tune-thresholds       # post-hoc threshold sweep (frozen only)
+```
+
+Frozen mode is CPU-only and completes in ~6 seconds on a typical laptop. Full harness docs in `benchmarks/README.md`.
 
 ## Run locally
 
@@ -71,8 +111,8 @@ curl -H "X-Cache-Bypass: true" "http://127.0.0.1:8000/read?url=..."
 ## Docker
 
 ```bash
-docker build -t ghostreader:0.1.0 .
-docker run --rm -p 8000:8000 ghostreader:0.1.0
+docker build -t ghostreader:0.2.0 .
+docker run --rm -p 8000:8000 ghostreader:0.2.0
 ```
 
 ## Configuration
@@ -104,11 +144,11 @@ The plan is to evolve this from "a script you run locally" into **a library + a 
 - **`ghost_reader_service/`** — thin FastAPI wrapper around the core. Same logic, exposed over HTTP. Useful when the agent isn't Python, or when you want a single shared cache across many agents.
 
 Other things on the near-term list:
-- A small benchmark harness with ground-truth text for a representative set of URLs (news, blogs, SPAs, docs, ecommerce), so the confidence thresholds can be measured rather than guessed.
-- Smarter walking of JSON-LD shapes (`articleBody`, `text`, `description`) instead of the current "long string" heuristic.
+- Threshold tuning informed by the v0.2.0 sweep — the curve has measurable headroom; v0.3 will move on it.
+- Smarter walking of JSON-LD shapes (`articleBody`, `text`, `description`) instead of the current "long string" heuristic. The frozen corpus showed Stage 2 idle on every fixture; this is the change most likely to wake it up.
 - Content-driven Playwright wait strategy (selector / network-idle with cap) instead of the fixed sleep.
 - Concurrency / queue layer in the service flavor.
-- **PyPI release** alongside the v0.2.0 library split, so `pip install ghost-reader` gives you the in-process reader directly.
+- **PyPI release** alongside the v0.3.0 library split, so `pip install ghost-reader` gives you the in-process reader directly.
 
 ## License
 

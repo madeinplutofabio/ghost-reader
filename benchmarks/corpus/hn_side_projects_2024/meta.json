@@ -1,0 +1,12 @@
+{
+  "byte_length": 1130093,
+  "content_hash_sha256": "8086cd11e1864a510b8bd998d449d1db7c1b8ea91e1a8faf2debcd8588a011c5",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:55:51Z",
+  "final_url": "https://news.ycombinator.com/item?id=42373343",
+  "fixture_id": "hn_side_projects_2024",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://news.ycombinator.com/item?id=42373343",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

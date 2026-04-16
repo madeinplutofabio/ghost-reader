@@ -1,0 +1,1825 @@
+{
+  "aggregate": {
+    "frozen": {
+      "browser_launch_count": 0,
+      "count": 27,
+      "efficiency_pass_rate_pct": 100.0,
+      "error_count": 0,
+      "latency_ms": {
+        "max": 2140.4,
+        "mean": 236.0,
+        "p50": 66.5,
+        "p95": 1567.1
+      },
+      "method_distribution": {
+        "best_effort": {
+          "count": 3,
+          "pct": 11.1
+        },
+        "raw_html": {
+          "count": 24,
+          "pct": 88.9
+        }
+      },
+      "ok_count": 27,
+      "overall_pass_rate_pct": 100.0,
+      "quality_pass_rate_pct": 100.0
+    }
+  },
+  "fixtures": [
+    {
+      "approach": null,
+      "category": "wikipedia",
+      "confidence": 0.9500000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "wikipedia_web_scraping",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 234.13761467889907,
+          "bullet_count": 46.0,
+          "lexical_diversity": 0.32616662594673834,
+          "link_ratio": 0.001221597849987784,
+          "paragraphs": 109.0,
+          "sentence_count": 366.0,
+          "short_line_ratio": 0.2018348623853211,
+          "word_count": 4093.0
+        }
+      },
+      "latency_ms": 144.14380000380334,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://en.wikipedia.org/wiki/Web_scraping",
+      "text_length": 25668,
+      "title": "Web scraping - Wikipedia",
+      "word_count": 4093
+    },
+    {
+      "approach": null,
+      "category": "documentation",
+      "confidence": 0.6700000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "python_docs_asyncio",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 42.18604651162791,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.5948905109489051,
+          "link_ratio": 0.0,
+          "paragraphs": 43.0,
+          "sentence_count": 29.0,
+          "short_line_ratio": 0.5581395348837209,
+          "word_count": 274.0
+        }
+      },
+      "latency_ms": 41.580599994631484,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://docs.python.org/3/library/asyncio.html",
+      "text_length": 1884,
+      "title": "asyncio \u2014 Asynchronous I/O",
+      "word_count": 274
+    },
+    {
+      "approach": null,
+      "category": "documentation",
+      "confidence": 0.7200000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "mdn_fetch_api",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 39.295081967213115,
+          "bullet_count": 9.0,
+          "lexical_diversity": 0.44063324538258575,
+          "link_ratio": 0.0,
+          "paragraphs": 61.0,
+          "sentence_count": 27.0,
+          "short_line_ratio": 0.7049180327868853,
+          "word_count": 379.0
+        }
+      },
+      "latency_ms": 23.715199997241143,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+      "text_length": 2505,
+      "title": "Fetch API - Web APIs | MDN",
+      "word_count": 379
+    },
+    {
+      "approach": null,
+      "category": "nextjs_spa",
+      "confidence": 0.8300000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "nextjs_blog_next14",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 77.07727272727273,
+          "bullet_count": 25.0,
+          "lexical_diversity": 0.5175992779783394,
+          "link_ratio": 0.0,
+          "paragraphs": 220.0,
+          "sentence_count": 104.0,
+          "short_line_ratio": 0.6409090909090909,
+          "word_count": 2216.0
+        }
+      },
+      "latency_ms": 295.11199999979,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://nextjs.org/blog/next-14",
+      "text_length": 17286,
+      "title": "Next.js 14",
+      "word_count": 2216
+    },
+    {
+      "approach": null,
+      "category": "long_form_news",
+      "confidence": 0.9633333333333336,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "guardian_raw_materials_extraction",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 253.33333333333334,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.507482993197279,
+          "link_ratio": 0.0,
+          "paragraphs": 18.0,
+          "sentence_count": 28.0,
+          "short_line_ratio": 0.0,
+          "word_count": 735.0
+        }
+      },
+      "latency_ms": 34.8288999957731,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://www.theguardian.com/environment/2024/jan/31/raw-materials-extraction-2060-un-report",
+      "text_length": 4594,
+      "title": "Extraction of raw materials to rise by 60% by 2060, says UN report",
+      "word_count": 735
+    },
+    {
+      "approach": null,
+      "category": "long_form_news",
+      "confidence": 0.9400000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "apnews_2024_hottest_year",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 198.21212121212122,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.4420485175202156,
+          "link_ratio": 0.0017969451931716084,
+          "paragraphs": 33.0,
+          "sentence_count": 76.0,
+          "short_line_ratio": 0.18181818181818182,
+          "word_count": 1113.0
+        }
+      },
+      "latency_ms": 401.7846999995527,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://apnews.com/article/climate-change-warming-hot-record-2024-disasters-12f899f071fcdbd051ad49a872611e92",
+      "text_length": 6605,
+      "title": "Earth breaks yearly heat record and lurches past dangerous warming threshold",
+      "word_count": 1113
+    },
+    {
+      "approach": null,
+      "category": "long_form_news",
+      "confidence": 0.9800000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "guardian_frankincense_extinction",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 273.25,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.4577976523197317,
+          "link_ratio": 0.0,
+          "paragraphs": 40.0,
+          "sentence_count": 97.0,
+          "short_line_ratio": 0.0,
+          "word_count": 1789.0
+        }
+      },
+      "latency_ms": 60.65310000121826,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://www.theguardian.com/environment/2024/sep/16/frankincense-trees-extinction-resin-trade-africa-arabia-western-wellness-industry-fragrance",
+      "text_length": 11008,
+      "title": "How the west\u2019s wellness industry is driving Ethiopia\u2019s frankincense trees towards extinction",
+      "word_count": 1789
+    },
+    {
+      "approach": null,
+      "category": "hydration_heavy",
+      "confidence": 0.77,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "nextjs_docs_home",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 80.86206896551724,
+          "bullet_count": 8.0,
+          "lexical_diversity": 0.5223097112860893,
+          "link_ratio": 0.0,
+          "paragraphs": 29.0,
+          "sentence_count": 29.0,
+          "short_line_ratio": 0.41379310344827586,
+          "word_count": 381.0
+        }
+      },
+      "latency_ms": 118.67379999603145,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://nextjs.org/docs",
+      "text_length": 2394,
+      "title": "Next.js Docs | Next.js",
+      "word_count": 381
+    },
+    {
+      "approach": null,
+      "category": "hydration_heavy",
+      "confidence": 0.6933333333333334,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "prisma_docs_orm",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 84.375,
+          "bullet_count": 7.0,
+          "lexical_diversity": 0.5598705501618123,
+          "link_ratio": 0.0,
+          "paragraphs": 24.0,
+          "sentence_count": 9.0,
+          "short_line_ratio": 0.3333333333333333,
+          "word_count": 309.0
+        }
+      },
+      "latency_ms": 52.26110000512563,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://www.prisma.io/docs/orm",
+      "text_length": 2066,
+      "title": "What is Prisma ORM? (Overview)",
+      "word_count": 309
+    },
+    {
+      "approach": null,
+      "category": "hydration_heavy",
+      "confidence": 0.8800000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "discourse_new_user_tips",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 88.18,
+          "bullet_count": 2.0,
+          "lexical_diversity": 0.39928057553956836,
+          "link_ratio": 0.0035971223021582736,
+          "paragraphs": 50.0,
+          "sentence_count": 72.0,
+          "short_line_ratio": 0.32,
+          "word_count": 834.0
+        }
+      },
+      "latency_ms": 66.53570000344189,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://meta.discourse.org/t/discourse-new-user-tips-and-tricks/54341",
+      "text_length": 4502,
+      "title": "Discourse New User Tips and Tricks",
+      "word_count": 834
+    },
+    {
+      "approach": null,
+      "category": "aggregator",
+      "confidence": 0.9400000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "hn_side_projects_2024",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 221.54003724394786,
+          "bullet_count": 6.0,
+          "lexical_diversity": 0.16627613554434031,
+          "link_ratio": 0.0016222062004325882,
+          "paragraphs": 537.0,
+          "sentence_count": 1255.0,
+          "short_line_ratio": 0.0297951582867784,
+          "word_count": 22192.0
+        }
+      },
+      "latency_ms": 2140.411000000313,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://news.ycombinator.com/item?id=42373343",
+      "text_length": 120013,
+      "title": "Ask HN: Those making $500/month on side projects in 2024 \u2013 Show and tell | Hacker News",
+      "word_count": 22192
+    },
+    {
+      "approach": null,
+      "category": "aggregator",
+      "confidence": 0.7214285714285715,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "github_discussion_feedback_app_dir",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 65.22222222222223,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.5481727574750831,
+          "link_ratio": 0.0,
+          "paragraphs": 27.0,
+          "sentence_count": 30.0,
+          "short_line_ratio": 0.4444444444444444,
+          "word_count": 301.0
+        }
+      },
+      "latency_ms": 1567.0802000022377,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://github.com/vercel/next.js/discussions/41745",
+      "text_length": 1804,
+      "title": "[Feedback] App Directory Beta \u00b7 vercel/next.js \u00b7 Discussion #41745",
+      "word_count": 301
+    },
+    {
+      "approach": null,
+      "category": "aggregator",
+      "confidence": 0.7125000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "github_issue_inconsistent_singleton",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 68.29729729729729,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.5081206496519721,
+          "link_ratio": 0.0069605568445475635,
+          "paragraphs": 37.0,
+          "sentence_count": 41.0,
+          "short_line_ratio": 0.4594594594594595,
+          "word_count": 431.0
+        }
+      },
+      "latency_ms": 88.23080000001937,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://github.com/vercel/next.js/issues/65350",
+      "text_length": 2599,
+      "title": "Next App Router (14.2.3) - Inconsistent Singleton \u00b7 Issue #65350 \u00b7 vercel/next.js",
+      "word_count": 431
+    },
+    {
+      "approach": null,
+      "category": "jsonld_heavy",
+      "confidence": 0.8300000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "bbcgoodfood_chocolate_brownies",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 78.25,
+          "bullet_count": 16.0,
+          "lexical_diversity": 0.44585091420534456,
+          "link_ratio": 0.0,
+          "paragraphs": 48.0,
+          "sentence_count": 35.0,
+          "short_line_ratio": 0.7291666666666666,
+          "word_count": 711.0
+        }
+      },
+      "latency_ms": 102.4942000003648,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://www.bbcgoodfood.com/recipes/best-ever-chocolate-brownies-recipe",
+      "text_length": 3836,
+      "title": "Best ever chocolate brownies recipe",
+      "word_count": 711
+    },
+    {
+      "approach": null,
+      "category": "jsonld_heavy",
+      "confidence": 0.9000000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "sallys_chewy_chocolate_chip_cookies",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 165.63106796116506,
+          "bullet_count": 21.0,
+          "lexical_diversity": 0.24357723577235774,
+          "link_ratio": 0.0,
+          "paragraphs": 103.0,
+          "sentence_count": 217.0,
+          "short_line_ratio": 0.23300970873786409,
+          "word_count": 3075.0
+        }
+      },
+      "latency_ms": 113.49640000116779,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/",
+      "text_length": 17236,
+      "title": "Best Chocolate Chip Cookies (Popular Recipe!) - Sally's Baking",
+      "word_count": 3075
+    },
+    {
+      "approach": null,
+      "category": "tech_blog",
+      "confidence": 0.8933333333333335,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "danluu_cli_complexity",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 143.75706214689265,
+          "bullet_count": 1.0,
+          "lexical_diversity": 0.2621057307863172,
+          "link_ratio": 0.0002221235006663705,
+          "paragraphs": 177.0,
+          "sentence_count": 167.0,
+          "short_line_ratio": 0.5141242937853108,
+          "word_count": 4502.0
+        }
+      },
+      "latency_ms": 39.927799996803515,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://danluu.com/cli-complexity/",
+      "text_length": 25754,
+      "title": "The growth of command line options, 1979-Present",
+      "word_count": 4502
+    },
+    {
+      "approach": null,
+      "category": "tech_blog",
+      "confidence": 0.9000000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "simonw_wordcamp_llms",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 128.7612293144208,
+          "bullet_count": 19.0,
+          "lexical_diversity": 0.17661305948459602,
+          "link_ratio": 0.0,
+          "paragraphs": 423.0,
+          "sentence_count": 590.0,
+          "short_line_ratio": 0.10874704491725769,
+          "word_count": 10322.0
+        }
+      },
+      "latency_ms": 99.6205999981612,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/",
+      "text_length": 55287,
+      "title": "Making Large Language Models work for you",
+      "word_count": 10322
+    },
+    {
+      "approach": null,
+      "category": "tech_blog",
+      "confidence": 1.0,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "pragmaticengineer_what_is_data_engineering",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 233.7058823529412,
+          "bullet_count": 9.0,
+          "lexical_diversity": 0.2652109911678116,
+          "link_ratio": 0.0,
+          "paragraphs": 102.0,
+          "sentence_count": 221.0,
+          "short_line_ratio": 0.1568627450980392,
+          "word_count": 4076.0
+        }
+      },
+      "latency_ms": 34.275100006198045,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://blog.pragmaticengineer.com/what-is-data-engineering",
+      "text_length": 24034,
+      "title": "What is Data Engineering?",
+      "word_count": 4076
+    },
+    {
+      "approach": null,
+      "category": "edge_cases",
+      "confidence": 0.2,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "gohugo_404",
+      "hints": {
+        "stage": "fallback",
+        "stats": {
+          "avg_paragraph_length": 58.0,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.9047619047619048,
+          "link_ratio": 0.0,
+          "paragraphs": 2.0,
+          "sentence_count": 2.0,
+          "short_line_ratio": 0.0,
+          "word_count": 21.0
+        }
+      },
+      "latency_ms": 21.63489999657031,
+      "method": "best_effort",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": false,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "method_allowed",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://gohugo.io/totally-made-up-xyz12345",
+      "text_length": 117,
+      "title": "404 Page not found",
+      "word_count": 21
+    },
+    {
+      "approach": null,
+      "category": "edge_cases",
+      "confidence": 0.1,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "vercel_js_required_shell",
+      "hints": {
+        "stage": "fallback",
+        "stats": {
+          "avg_paragraph_length": 0.0,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.0,
+          "link_ratio": 0.0,
+          "paragraphs": 0.0,
+          "sentence_count": 0.0,
+          "short_line_ratio": 0.0,
+          "word_count": 0.0
+        }
+      },
+      "latency_ms": 16.89269999769749,
+      "method": "best_effort",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": false,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "method_allowed",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://vercel.com/totally-made-up-path-xyz12345",
+      "text_length": 0,
+      "title": "Overview \u2013 Vercel",
+      "word_count": 0
+    },
+    {
+      "approach": null,
+      "category": "edge_cases",
+      "confidence": 0.7100000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "wikipedia_mercury_disambiguation",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 59.440366972477065,
+          "bullet_count": 82.0,
+          "lexical_diversity": 0.47300215982721383,
+          "link_ratio": 0.0,
+          "paragraphs": 109.0,
+          "sentence_count": 3.0,
+          "short_line_ratio": 0.3394495412844037,
+          "word_count": 926.0
+        }
+      },
+      "latency_ms": 101.28390000318177,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": false,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "method_allowed",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://en.wikipedia.org/wiki/Mercury_(disambiguation)",
+      "text_length": 6615,
+      "title": "Mercury - Wikipedia",
+      "word_count": 926
+    },
+    {
+      "approach": null,
+      "category": "wikipedia",
+      "confidence": 0.9500000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "wikipedia_photosynthesis",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 238.644776119403,
+          "bullet_count": 75.0,
+          "lexical_diversity": 0.26872319366545694,
+          "link_ratio": 0.0,
+          "paragraphs": 335.0,
+          "sentence_count": 1522.0,
+          "short_line_ratio": 0.24776119402985075,
+          "word_count": 12124.0
+        }
+      },
+      "latency_ms": 630.8609000043361,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "forbidden_clean",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://en.wikipedia.org/wiki/Photosynthesis",
+      "text_length": 80428,
+      "title": "Photosynthesis - Wikipedia",
+      "word_count": 12124
+    },
+    {
+      "approach": null,
+      "category": "documentation",
+      "confidence": 0.7850000000000001,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "rust_book_ch1_1",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 49.19626168224299,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.3647316538882804,
+          "link_ratio": 0.004381161007667032,
+          "paragraphs": 107.0,
+          "sentence_count": 61.0,
+          "short_line_ratio": 0.5607476635514018,
+          "word_count": 913.0
+        }
+      },
+      "latency_ms": 25.178700001561083,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://doc.rust-lang.org/book/ch01-01-installation.html",
+      "text_length": 5422,
+      "title": "Installation - The Rust Programming Language",
+      "word_count": 913
+    },
+    {
+      "approach": null,
+      "category": "nextjs_spa",
+      "confidence": 0.41,
+      "efficiency_checks": [
+        {
+          "gating": false,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "vercel_about",
+      "hints": {
+        "stage": "fallback",
+        "stats": {
+          "avg_paragraph_length": 82.4,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.7213114754098361,
+          "link_ratio": 0.0,
+          "paragraphs": 5.0,
+          "sentence_count": 8.0,
+          "short_line_ratio": 0.0,
+          "word_count": 61.0
+        }
+      },
+      "latency_ms": 90.76869999989867,
+      "method": "best_effort",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": false,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": false,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "method_allowed",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://vercel.com/about",
+      "text_length": 420,
+      "title": "About Us \u2013 Vercel",
+      "word_count": 61
+    },
+    {
+      "approach": null,
+      "category": "short_static",
+      "confidence": 0.9200000000000002,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "hn_newswelcome",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 241.6,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.5211267605633803,
+          "link_ratio": 0.0,
+          "paragraphs": 10.0,
+          "sentence_count": 28.0,
+          "short_line_ratio": 0.3,
+          "word_count": 426.0
+        }
+      },
+      "latency_ms": 4.826600001251791,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://news.ycombinator.com/newswelcome.html",
+      "text_length": 2425,
+      "title": "Hacker News: Welcome",
+      "word_count": 426
+    },
+    {
+      "approach": null,
+      "category": "short_static",
+      "confidence": 0.8,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "json_org_landing",
+      "hints": {
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 59.9,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.4738562091503268,
+          "link_ratio": 0.0,
+          "paragraphs": 30.0,
+          "sentence_count": 23.0,
+          "short_line_ratio": 0.3,
+          "word_count": 306.0
+        }
+      },
+      "latency_ms": 50.42919999687001,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://www.json.org/json-en.html",
+      "text_length": 1835,
+      "title": "JSON",
+      "word_count": 306
+    },
+    {
+      "approach": null,
+      "category": "short_static",
+      "confidence": 0.6,
+      "efficiency_checks": [
+        {
+          "gating": true,
+          "name": "method_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "latency_band_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "efficiency_pass": true,
+      "error": null,
+      "fixture_id": "example_com_landing",
+      "hints": {
+        "small_static_page": true,
+        "stage": 1,
+        "stats": {
+          "avg_paragraph_length": 42.333333333333336,
+          "bullet_count": 0.0,
+          "lexical_diversity": 0.8421052631578947,
+          "link_ratio": 0.0,
+          "paragraphs": 3.0,
+          "sentence_count": 2.0,
+          "short_line_ratio": 0.6666666666666666,
+          "word_count": 19.0
+        }
+      },
+      "latency_ms": 4.176700000243727,
+      "method": "raw_html",
+      "mode": "frozen",
+      "ok": true,
+      "overall_pass": true,
+      "quality_checks": [
+        {
+          "gating": true,
+          "name": "title_ok",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "required_recall",
+          "passed": true,
+          "reason": ""
+        },
+        {
+          "gating": true,
+          "name": "word_count_ok",
+          "passed": true,
+          "reason": ""
+        }
+      ],
+      "quality_pass": true,
+      "source_url": "https://example.com/",
+      "text_length": 131,
+      "title": "Example Domain",
+      "word_count": 19
+    }
+  ],
+  "regressions": [],
+  "run_meta": {
+    "app_version": "0.1.0",
+    "duration_seconds": 6.44,
+    "fixture_count": 27,
+    "mode": "frozen",
+    "timestamp_utc": "2026-04-15T23:12:23Z"
+  }
+}

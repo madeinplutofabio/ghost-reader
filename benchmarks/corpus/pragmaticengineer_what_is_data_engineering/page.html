@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>What is Data Engineering? - The Pragmatic Engineer</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w256h256/2024/06/The-Pragmatic-Engineer-Blog-Publication-Icon--Logo-.png">
+
+    <link rel="stylesheet" type="text/css" href="https://blog.pragmaticengineer.com/assets/css/screen.css?v=150f442c1a" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <meta name="description" content="A broad overview of the data engineering field by former Facebook data engineer Benjamin Rogojan. Part 1.">
+    <link rel="icon" href="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w256h256/2024/06/The-Pragmatic-Engineer-Blog-Publication-Icon--Logo-.png" type="image/png">
+    <link rel="canonical" href="https://blog.pragmaticengineer.com/what-is-data-engineering/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="The Pragmatic Engineer">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="What is Data Engineering?">
+    <meta property="og:description" content="A broad overview of the data engineering field by former Facebook data engineer Benjamin Rogojan. Part 1.">
+    <meta property="og:url" content="https://blog.pragmaticengineer.com/what-is-data-engineering/">
+    <meta property="og:image" content="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1200/2022/09/Screenshot-2022-09-13-at-18.42.39-1.png">
+    <meta property="article:published_time" content="2022-09-13T16:59:18.000Z">
+    <meta property="article:modified_time" content="2022-09-13T16:59:18.000Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="What is Data Engineering?">
+    <meta name="twitter:description" content="A broad overview of the data engineering field by former Facebook data engineer Benjamin Rogojan. Part 1.">
+    <meta name="twitter:url" content="https://blog.pragmaticengineer.com/what-is-data-engineering/">
+    <meta name="twitter:image" content="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1200/2022/09/Screenshot-2022-09-13-at-18.42.39-1.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Gergely Orosz">
+    <meta name="twitter:site" content="@GergelyOrosz">
+    <meta name="twitter:creator" content="@GergelyOrosz">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="748">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "The Pragmatic Engineer",
+        "url": "https://blog.pragmaticengineer.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2015/12/pragmatic-engineer-profile-image.png"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Gergely Orosz",
+        "url": "https://blog.pragmaticengineer.com/author/gergely/",
+        "sameAs": [
+            "https://x.com/GergelyOrosz"
+        ]
+    },
+    "headline": "What is Data Engineering?",
+    "url": "https://blog.pragmaticengineer.com/what-is-data-engineering/",
+    "datePublished": "2022-09-13T16:59:18.000Z",
+    "dateModified": "2022-09-13T16:59:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1200/2022/09/Screenshot-2022-09-13-at-18.42.39-1.png",
+        "width": 1200,
+        "height": 748
+    },
+    "description": "A broad overview of the data engineering field by former Facebook data engineer Benjamin Rogojan. Part 1.",
+    "mainEntityOfPage": "https://blog.pragmaticengineer.com/what-is-data-engineering/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.30">
+    <link rel="alternate" type="application/rss+xml" title="The Pragmatic Engineer" href="https://blog.pragmaticengineer.com/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.68/umd/portal.min.js" data-i18n="true" data-ghost="https://blog.pragmaticengineer.com/" data-key="e19be39046770b14a9d5caceb0" data-api="https://pragmatic-engineer.ghost.io/ghost/api/content/" data-locale="en" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="e19be39046770b14a9d5caceb0" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="https://pragmatic-engineer.ghost.io/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="https://blog.pragmaticengineer.com/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js?v=150f442c1a"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css?v=150f442c1a">
+    <script defer src="/public/member-attribution.min.js?v=150f442c1a"></script>
+    <script defer src="/public/ghost-stats.min.js?v=150f442c1a" data-stringify-payload="false" data-datasource="analytics_events" data-storage="localStorage" data-host="https://blog.pragmaticengineer.com/.ghost/analytics/api/v1/page_hit"  tb_site_uuid="39f85cc7-8637-40fc-a57c-f45754453717" tb_post_uuid="792e0f8e-5953-4e60-8f39-ee2467aa9582" tb_post_type="post" tb_member_uuid="undefined" tb_member_status="undefined"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css" />
+<style>
+    pre[class*=language-] {
+        margin: 1.75em 0;
+    }
+</style>
+</head>
+<body class="post-template nav-closed">
+
+    <div class="nav mobile">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home elusive-icon Home" role="presentation"><a href="https://blog.pragmaticengineer.com/">Home</a></li>
+            <li class="nav-newsletter elusive-icon Newsletter" role="presentation"><a href="https://newsletter.pragmaticengineer.com/about">Newsletter</a></li>
+            <li class="nav-popular-articles elusive-icon Popular Articles" role="presentation"><a href="https://blog.pragmaticengineer.com/tag/popular/">Popular Articles</a></li>
+            <li class="nav-the-software-engineers-guidebook elusive-icon The Software Engineer&#x27;s Guidebook" role="presentation"><a href="https://www.engguidebook.com/">The Software Engineer&#x27;s Guidebook</a></li>
+            <li class="nav-my-books elusive-icon My Books" role="presentation"><a href="https://blog.pragmaticengineer.com/books/">My Books</a></li>
+            <li class="nav-early-trends elusive-icon Early trends" role="presentation"><a href="https://blog.pragmaticengineer.com/early-trends/">Early trends</a></li>
+            <li class="nav-reading-list elusive-icon Reading List" role="presentation"><a href="https://blog.pragmaticengineer.com/my-reading-list/">Reading List</a></li>
+            <li class="nav-ethics-statement elusive-icon Ethics statement" role="presentation"><a href="https://blog.pragmaticengineer.com/ethics-statement/">Ethics statement</a></li>
+            <li class="nav-write-a-guest-article elusive-icon Write a guest article" role="presentation"><a href="https://blog.pragmaticengineer.com/pragmatic-engineer-guest-article/">Write a guest article</a></li>
+            <li class="nav-sponsors elusive-icon Sponsors" role="presentation"><a href="https://blog.pragmaticengineer.com/podcast-sponsors/">Sponsors</a></li>
+            <li class="nav-investing elusive-icon Investing" role="presentation"><a href="https://blog.pragmaticengineer.com/investing/">Investing</a></li>
+            <li class="nav-now elusive-icon Now" role="presentation"><a href="https://blog.pragmaticengineer.com/now/">Now</a></li>
+            <li class="nav-contact-me elusive-icon Contact me" role="presentation"><a href="https://blog.pragmaticengineer.com/contact/">Contact me</a></li>
+            <li class="nav-about elusive-icon About" role="presentation"><a href="https://blog.pragmaticengineer.com/about/">About</a></li>
+            <li class="nav-rss-feed elusive-icon RSS Feed" role="presentation"><a href="https://blog.pragmaticengineer.com/feed/">RSS Feed</a></li>
+            <li class="nav-bluesky elusive-icon bluesky" role="presentation"><a href="https://bsky.app/profile/gergely.pragmaticengineer.com/">bluesky</a></li>
+            <li class="nav-twitter elusive-icon twitter" role="presentation"><a href="http://twitter.com/GergelyOrosz">twitter</a></li>
+            <li class="nav-youtube elusive-icon youtube" role="presentation"><a href="https://www.youtube.com/@pragmaticengineer">youtube</a></li>
+            <li class="nav-linkedin elusive-icon linkedin" role="presentation"><a href="http://www.linkedin.com/in/gergelyorosz">linkedin</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="https://blog.pragmaticengineer.com/rss/">Subscribe</a>
+</div>
+<span class="nav-cover mobile"></span>
+
+<div class="nav-desktop">
+  <ul class="sidebar-nav">
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/" class="elusive-icon Home" rel="me">Home</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://newsletter.pragmaticengineer.com/about" class="elusive-icon Newsletter" rel="me">Newsletter</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/tag/popular/" class="elusive-icon Popular Articles" rel="me">Popular Articles</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://www.engguidebook.com/" class="elusive-icon The Software Engineer&#x27;s Guidebook" rel="me">The Software Engineer&#x27;s Guidebook</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/books/" class="elusive-icon My Books" rel="me">My Books</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/early-trends/" class="elusive-icon Early trends" rel="me">Early trends</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/my-reading-list/" class="elusive-icon Reading List" rel="me">Reading List</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/ethics-statement/" class="elusive-icon Ethics statement" rel="me">Ethics statement</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/pragmatic-engineer-guest-article/" class="elusive-icon Write a guest article" rel="me">Write a guest article</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/podcast-sponsors/" class="elusive-icon Sponsors" rel="me">Sponsors</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/investing/" class="elusive-icon Investing" rel="me">Investing</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/now/" class="elusive-icon Now" rel="me">Now</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/contact/" class="elusive-icon Contact me" rel="me">Contact me</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/about/" class="elusive-icon About" rel="me">About</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/feed/" class="elusive-icon RSS Feed" rel="me">RSS Feed</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://bsky.app/profile/gergely.pragmaticengineer.com/" class="elusive-icon bluesky" rel="me">bluesky</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="http://twitter.com/GergelyOrosz" class="elusive-icon twitter" rel="me">twitter</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://www.youtube.com/@pragmaticengineer" class="elusive-icon youtube" rel="me">youtube</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="http://www.linkedin.com/in/gergelyorosz" class="elusive-icon linkedin" rel="me">linkedin</a>
+        </li>
+  </ul>
+
+</div>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+
+<header class="main-header post-head " style="background-image: url(https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-13-at-18.42.39-1.png)">
+    <nav class="main-nav overlay clearfix">
+        <a class="blog-logo" href="https://blog.pragmaticengineer.com"><img src="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2015/12/pragmatic-engineer-profile-image.png" alt="The Pragmatic Engineer" /></a>
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">What is Data Engineering?</h1>
+        </header>
+
+        <section class="post-content" id="content">
+          <!--
+          <p><em>Before we start: I'm hosting the first-ever <strong><a href="https://www.pragmaticsummit.com/">The Pragmatic Summit</a></strong> on 11 February, 2026, in San Francisco. Join 400 top engineers and leaders as we answer the question: How is AI reshaping software engineering, dev workflows, and the modern engineering stack? 
+          Spaces are limited - don't miss out! <strong><a href="https://www.pragmaticsummit.com/">Buy tickets here</a></strong>.
+
+          </em></p>
+          -->
+
+            <p><em>👋 Hi, this is </em><a href="https://twitter.com/gergelyorosz?ref=blog.pragmaticengineer.com"><em>Gergely</em></a><em> with a free issue of the Pragmatic Engineer Newsletter. Today we cover Part 1 of 'What is Data Engineering.' To get a similarly in-depth article every week, <a href="https://newsletter.pragmaticengineer.com/about?ref=blog.pragmaticengineer.com">subscribe to The Pragmatic Engineer Newsletter</a>.</em></p><h3 id="q-i%E2%80%99m-hearing-more-about-data-engineering-as-a-software-engineer-why-is-it-important-what%E2%80%99s-worth-knowing-about-this-field-and-could-it-be-worth-transitioning-into-this-area"><strong>Q: I’m hearing more about data engineering. As a software engineer, why is it important, what’s worth knowing about this field, and could it be worth transitioning into this area?</strong></h3><p>This is an important question as data engineering is a field that is without doubt, on fire. In November of last year, I wrote about what seemed to be a Data Engineer shortage in the issue, <a href="https://newsletter.pragmaticengineer.com/p/more-follow-up-hiring-market?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">More follow-up on the tech hiring market</a>:</p><blockquote>“Data usage is exploding, and companies need to make more use of their large datasets than ever. Talking with hiring managers, the past 18 months has been a turning point for many organizations, where they are doubling down on their ability to extract real-time insights from their large data sets. (...)<br><br>What makes hiring for data engineers challenging is the many languages, technologies and different types of data work different organizations have.”</blockquote><p>To answer this question, I pulled in <a href="https://twitter.com/SeattleDataGuy?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Benjamin Rogojan</a>, who also goes by Seattle Data Guy, on his <a href="https://www.theseattledataguy.com/data-science-consulting-blog/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">popular data engineering blog</a> and <a href="https://www.youtube.com/c/SeattleDataGuy?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">YouTube channel</a>.</p><p>Ben has been living and breathing data engineering for more than 7 years. He worked for 3 years at Facebook as a Data Engineer and has gone independent following his work there. He now works with both large and small companies to build out data warehousing, developing and implementing models, and takes on just about any data pipeline challenge.</p><p>Ben also writes the <a href="https://seattledataguy.substack.com/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">SeattleDataGuy newsletter on Substack</a> which is a publication to learn about end-to-end data flows, Data Engineering, MLOps, and Data Science. <a href="https://seattledataguy.substack.com/subscribe?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Subscribe here</a>.</p><p>In this article, Ben covers:</p><ol><li>What do data engineers do?</li><li>Data engineering terms.</li><li>Why data engineering is becoming more important.</li></ol><p>In part 2 - coming next week and <a href="d">already out for full subscribers</a> - we will additionally cover:</p><ul><li>Data engineering tools: an overview</li><li>Where is data engineering headed?</li><li>Getting into data engineering as a software engineer</li></ul><p>With that, over to Ben:</p><hr><p>For the past near decade I have worked in the data world. Like many, in 2012 I was exposed to HBR’s <a href="https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Data Scientist: The Sexiest Job of the 21st Century</a>. But also like many, I found data science wasn’t the exact field for me. Instead, after working with a few data scientists for a while I quickly realized I enjoyed building data infrastructure far more than creating Jupyter Notebooks.</p><p>Initially, I didn’t really know what this role was that I had stumbled into. I called myself an automation engineer, a BI Engineer, and other titles I have long forgotten. Even when I was looking for jobs online I would just search for a mix of “SQL”, “Automation” and “Big Data,” instead of a specific job title.</p><p>Eventually, I found a role called “data engineer” and it stuck. Recently, the role itself has been gaining a little more traction, to the point where data engineering is growing more rapidly than data science roles. Also, companies like Airbnb have started initiatives to hire more data engineers to increase their data quality.</p><p>But what is a data engineer and what do data engineers do for a company? In this article, we dive into data engineering, some of its key concepts and the role it plays within companies.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-13-at-18.30.10.png" class="kg-image" alt="Where do data engineers “sit”? They’re typically working with software engineers and data scientists, but much less with product managers. In this article, we dive deeper into the data engineering field." loading="lazy" width="1942" height="1072" srcset="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w600/2022/09/Screenshot-2022-09-13-at-18.30.10.png 600w, https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1000/2022/09/Screenshot-2022-09-13-at-18.30.10.png 1000w, https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1600/2022/09/Screenshot-2022-09-13-at-18.30.10.png 1600w, https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-13-at-18.30.10.png 1942w" sizes="(min-width: 720px) 720px"><figcaption>Where do data engineers “sit”? They’re typically working with software engineers and data scientists, but much less with product managers. In this article, we dive deeper into the data engineering field.</figcaption></figure><h2 id="1-what-do-data-engineers-do">1. What do data engineers do?</h2><p>How do you define data engineering? Here’s how data engineer <a href="https://www.linkedin.com/in/josephreis/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Joe Reis</a> specifies this term in his recently released book, <a href="https://www.amazon.com/Fundamentals-Data-Engineering-Robust-Systems/dp/1098108302?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Fundamentals of Data Engineering</a>:</p><blockquote>"Data engineering is the development, implementation, and maintenance of systems and processes that take in raw data and produce high-quality, consistent information that supports downstream use cases, such as analysis and machine learning.<br><br>Data engineering is the intersection of security, data management, DataOps, data architecture, orchestration, and software engineering. A data engineer manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases, such as analysis or machine learning."</blockquote><p>In short, data engineers play an important role in creating core <a href="https://seattledataguy.substack.com/p/the-baseline-datastack-going-beyond?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">data infrastructure</a> that allows for analysts and end-users to interact with data which is often locked up in operations systems.</p><p>For example, at Facebook there is often either a data engineer or a data engineering team which supports a feature or business domain. Teams that support features and products are focused on helping define which information should be tracked, and then they translate that data into easy-to-understand core data sets.</p><p>A <strong>core data set </strong>represents the most granular breakdown of the transactions and entities you are tracking from the application side. From there, some teams have different levels of denormalization they might want to implement. For example, they might want to denormalize if they remove any form of nested columns to avoid analysts having to do so.</p><p>Also, many teams will set <a href="https://seattledataguy.substack.com/p/setting-standards-for-your-data-team?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">standards on naming conventions</a> in order to allow anyone who views the data set to quickly understand what data type a field is. The basic example I always use is the “is_” or “has_” prefix denoting a boolean. The purpose of these changes is to treat data as a product; one that data analysts and data scientists can then build their models and research from.</p><p>Our team at Facebook produced several core data sets that represented recruiting and People data. These core data sets allowed analysts and data scientists to see the key entities, relationships and actions occurring inside those business domains. We followed a core set of principles which made it clear how data should be integrated, even though it was being pulled from multiple data sources, including internally developed products and Saas solutions.</p><p>What are the goals of a core data set? Here are the three main ones.</p><p><strong>1. Easy to work with</strong>. Datasets should be easy to work with for analysts, data scientists and product managers. This means creating data sets that can be easily approached without a high level of technical expertise to extract value from said data. In addition, these data sets standardize data so that users don’t have to constantly implement the same logic over and again.</p><p><strong>2. Provide historical perspective</strong>. Many applications store data which represents the current state of entities. For example, they store where a customer lives or what title an employee has. Not all applications store these changes. In turn, data engineers must create data that represent this.</p><p>The traditional way to track historical changes in data was to use what we call <a href="https://dwgeek.com/slowly-changing-dimensions-scd.html/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Slowly Changing Dimensions (SCD)</a>. There are several different types of SCD, but one of the simplest to implement is SCD type 2 which has a start and end date, as well as an “is_current” flag.</p><p>An example of an SCD is a customer changing their address when they move home. Instead of just updating the current row which stores the address for said customer or employee, you will:</p><ol><li>Insert a new row with the new information.</li><li>Update the old row, so it is no longer marked current.</li><li>Ensure the end date represents the last date when the information was accurate.</li></ol><p>This way, when someone asks, “how many customers did we have per region over the last 3 years,” you can answer accurately.</p><p><strong>3. Integrated</strong>. Data in companies come from multiple sources. Often, in order to get value from said data, analysts and data scientists need to mesh all the data together, somehow. Data engineers help by adding IDs and methods for end-users to integrate data.</p><p>At Facebook, most data had consistent IDs. This made it feel like we were being spoiled, as consistent IDs made it very easy to work with data across different sets.</p><p>When data is easy to integrate across entities and source systems it allows analysts and data scientists the ability to easily ask questions across multiple domains, without having to create complex – and likely difficult to maintain – logic to match data sets. Maintaining custom and complex logic to match data sets is expensive in terms of time and its accuracy is often dubious. Rarely have I seen anyone create a clean match across data that’s poorly integrated.</p><p>One great example I heard recently was from Chad Sanderson of Convoy. Chad explained how a data scientist had to create a system to mesh email and outcome data together and it was both costly and relied on fuzzy logic which probably wasn’t as accurate as possible.</p><p>At Facebook, even systems like Salesforce, Workday and our custom internal tools, all shared these consistent IDs. Some used Salesforce as the main provider and others used internal reporting IDS. But it was always clear which ID was acting as the unique ID to integrate across tables.</p><p>But how can data engineers create core data sets which are easy to use?</p><p>Now we have discussed the goal, let’s outline some of the terms you’ll hear data engineers use to make your data more approachable.</p><h2 id="2-data-engineering-terms">2. Data engineering terms</h2><p>Let’s explain some commonly used data engineering terms.</p><figure class="kg-card kg-image-card kg-card-hascaption"><img src="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-13-at-18.42.39.png" class="kg-image" alt="Some of the more common data engineering terms" loading="lazy" width="1524" height="950" srcset="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w600/2022/09/Screenshot-2022-09-13-at-18.42.39.png 600w, https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/size/w1000/2022/09/Screenshot-2022-09-13-at-18.42.39.png 1000w, https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-13-at-18.42.39.png 1524w" sizes="(min-width: 720px) 720px"><figcaption>Some of the more common data engineering terms</figcaption></figure><h3 id="etleltdata-pipelines">ETL\ELT\Data Pipelines</h3><p>You will often hear data engineers describe most of their job as moving data from point A to point B. We do this using data pipelines.</p><p>Data pipelines are generally structured as either an Extract, Transform, Load or an Extract, Load, Transform (<a href="https://seattledataguy.substack.com/p/what-are-etls-and-why-we-use-them?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">ETL</a> vs <a href="https://blog.portable.io/getting-started-with-extract-load-transform-elt/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">ELT</a>.) Of course, there are other design patterns we may take on, such as event pipelines, streaming and change data capture (<a href="https://www.striim.com/blog/change-data-capture-cdc-what-it-is-and-how-it-works/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">CDC</a>.) This is why many of us often just generalize and use the term ‘data pipelines.’ However, most pipelines are in the form of the steps below.</p><p><strong>E - Extract.</strong> The extract step involves connecting to a data source such as an API, automated reporting system or file store, and pulling the data out of it.</p><p>For example, one project I worked on required me to pull data from Asana. This meant I needed to create several components to interact with Asana’s multiple API endpoints, pull out the JSON and store it in a file service.</p><p>I will say Asana’s API is not built for bulk data extracts. There were many cases where I would have to get all the new project IDs, as well as the current ones I had in my current table, in order to then set up a second set of calls to use the project ID to get all the tasks attached to said projects. This was plainly far more cumbersome than just saying, “give me all the tasks in this organization.”</p><p><strong>T - Transform.</strong> The transform step (especially in an initial pipeline) will likely standardize the data (format dates, standardize booleans, etc.,) as well as sometimes starting to integrate data by adding in IDs which are also standardized, deduplicating data and adding in more human readable categories.</p><p>Transforms can also be more complex, but the examples above are standard. One example of this was that with all the various core data sets our team was managing, we always defined which ID was the core ID for a particular data set. Whether the core ID was an internal Facebook ID or an external Saas ID, we would be clear which one we used as “core”.</p><p>Because we were clear on the core ID, if we ended up having multiple IDs in a table, we would remove them to avoid further confusion, downstream.</p><p>From my own philosophical perspective, creating data as a product means creating a product someone with limited knowledge of your team's data can approach and understand. By understanding, I mean they can quickly grasp what fields mean and how one table relates to another.</p><p>Understanding the data set is an important step in a baseline transform. There are more complex transforms which can occur for analytical purposes.</p><p><strong>L - Load.</strong> This step is meant to load data into a table in the data warehouse. There isn’t anything fancy here. At Facebook, we loaded into our team's “data warehouse,” but you could be loading into <a href="https://www.youtube.com/watch?v=njttWa08pwo&ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Snowflake</a>, <a href="https://www.youtube.com/watch?v=QNdiGZFaUFs&t=2s&ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Databricks</a>, <a href="https://aws.amazon.com/redshift/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Redshift</a>, <a href="https://cloud.google.com/bigquery?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Bigquery</a> or others.</p><h3 id="data-modeling">Data Modeling</h3><p>Software engineers who have built their own database will be familiar with some aspects of data modeling. Generally, for what is known as an <a href="https://www.oracle.com/database/what-is-oltp/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">OLTP</a> (online transaction processing,) these systems are developed to be fast and robust for single transactions.</p><p>However, these data models pose problems when the data is being used for analytics.</p><p>The data in these models requires a lot of joins to get to an obscure field which a data analyst wants to know about. Also, the data model isn't usually developed to support billions of row aggregations and calculations with good performance. These models tend to be heavily normalized and in turn require heavy amounts of processing to answer even simple questions.</p><p>In return for data sets being heavily normalized, data modeling for data engineers is a combination of adding missing abilities for these data sets. By missing abilities, I mean the ability to track historical data, improving performance of analytical queries and simplifying the data model into a much more straightforward set of tables. Common end-states will be referred to as snowflake, star, activity or OBT schemas.</p><h3 id="data-integrity-checks">Data Integrity Checks</h3><p>Tracking every single table and all its columns isn’t feasible for a single data engineer. When I worked at Facebook, I had well over 300 tables for which I was listed as the owner. To make matters worse, bad data can enter a column and not fail because it’s the same data type. Especially in the case when you’re loading data via the order they come in, versus (vs) explicit name calls.</p><p>A software engineer upstream could change a source, which in turn changes the order or removes the column altogether. This change could lead to data being loaded improperly but not failing, if the data is the same data type.</p><p>Data integrity checks are a crucial first line of defense for detecting data issues like these I’ve just described. There are several traditional types of data integrity checks.</p><ul><li><strong>Null Checks</strong> - These checks calculate what percentage of a column is null and can then be set to a threshold value to go off when a column has too many nulls.</li><li><strong>Anomaly Checks</strong> - Anomaly checks can be used to both check specific column values as well as metadata about a table, such as how many rows were just inserted. These checks aim to detect drastic changes in either the fields or row counts. If, for example, a table suddenly has 10x the number of rows compared to yesterday, then perhaps there is a problem.</li><li><strong>Category Checks</strong> - Many fields represent enumerators or categories which should have only specific results. One example I always use is when I worked at a company that had a “State_Code” field. You’d assume this field only provided valid states as it was most likely filled via a drop-down menu. However, we found there were errors from time to time which weren’t valid states. So, we needed a data check in place to catch these issues.</li><li><strong>Uniqueness Check</strong> - Joining data across multiple granularities and data sets risks creating duplicate rows in your data warehouse; even if you removed some duplicates, earlier. They can be easily re-introduced with the wrong join, so creating a check in your final core data layer is key to ensuring you have the correct level of unique rows. Especially when a lot of modern data warehouses don’t provide the unique column constraint.</li><li><strong>Aggregate Checks</strong> - As data gets processed through multiple layers of data transforms, there is a chance that removal or changing of data can occur. In turn, creating checks which calculate aggregates such as total sales, row counts or unique customer counts is important because they detect any major changes or removals of data that occur.</li></ul><h3 id="streaming-vs-batch-processing">Streaming Vs Batch Processing</h3><p>A common question data engineers need to answer is this: does a pipeline need to be streamed or batch processed?</p><p><strong>Batch processing</strong> is when you have a data pipeline which runs at a normal cadence, usually every hour, or daily.</p><p>At Facebook, most of our jobs would run at around midnight. We would use <a href="https://www.youtube.com/watch?v=M0VCbhfQ3HQ&ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Dataswarm</a> (which is similar to <a href="https://www.youtube.com/watch?v=h5X3124R61U&ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Airflow</a>,) to set a scheduler using a <a href="https://en.wikipedia.org/wiki/Cron?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">cron</a>-like configuration for how often the job should run. An interesting point here is that some schedulers struggle with certain constraints, such as daylight savings. I’ve worked on a few projects where twice a year there was a need to rerun pipelines to deal with issues caused by the pipeline running in an unexpected pattern.</p><p><strong>Streaming</strong> involves ingesting and sometimes transforming data as soon as an event occurs.</p><p>For example, on one project we set up a Kafka topic which streamed events directly to Snowflake through its Kafka connector. This allowed the raw tables to constantly be up to date. This was important to the client as their service was providing a real-time utility that was directly connected to people’s day-to-day interactions. Their users both needed to be able to use their product in real-time, as well as glean information and insights from all the actions and machine learning models occurring across the platform.</p><p>It’s important to understand the use case before implementing a streaming data process. To fully process streamed data into a pipeline requires a lot more technical know-how, as well as contingencies if something goes wrong, and it can be far more difficult to recover. Whereas with batch data pipelines, if there is an error, it's pretty easy to rerun the data and the next time the pipeline will need to run is the following day.</p><p>In order to know which of these two pipeline styles your team should use, you want to understand how your end-users plan to use the data, how much data is coming in, as well as the natural state of the system you're pulling the data from. I was on a call recently with a client where initially they stated they wanted the data to be updated in real-time, then it went to every fifteen minutes and when I asked how often their users would be looking at the data, they said once a week. Not a great fit for investing in real-time data and I’d say I have a lot of conversations like this.</p><p>This isn’t to say real-time isn’t necessary and it has become far easier. Similar to the way processing large datasets has become far easier, thanks to a combination of the cloud and the popularization of solutions such as Hadoop.</p><h3 id="big-data-processing">Big Data Processing</h3><p>Big Data. Some feel the phrase is more of a marketing term and others believe it is the solution to developing reliable machine learning models. At the end of the day, I often refer to it as a big problem, for which we have developed solutions. Big Data on its own was often expensive and difficult to manage, especially on-site. It required constant migrations to larger physical servers and would often limit how many queries could truly be run on a machine.</p><p>In turn, many of the techniques centered around Big Data are meant to ease some of these problems.</p><ul><li><strong>MPP (massively parallel processing)</strong> - is a processing paradigm which as the name suggests, takes the idea of parallel processing to the extreme. It uses hundreds or thousands of processing nodes to work on parts of a computational task in parallel. These nodes each have their own I/O and OS and don’t share memory. They achieve a common computational task by communicating with each other over a high-speed internet connection.</li><li><strong>Map Reduce </strong>- is another processing paradigm that can sometimes appear very similar to MPP. It also breaks down large amounts of data into smaller batches, and then processes them over multiple nodes. However, while Map Reduce and MPP appear similar, there are some distinct differences. In general, Map Reduce is done on commodity hardware, whereas MPP tends to be done on more expensive hardware. MPP also tends to refer to SQL-based query computations, while MapReduce is generally more of a design paradigm most famously implemented in Java.</li></ul><h3 id="data-warehouses">Data Warehouses</h3><p>The concept of <a href="https://www.mozartdata.com/post/data-warehouse?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">data warehouses</a> has been around for decades. The purpose of data warehouses is to provide analysts and end-users data which tracks historical information and is integrated with multiple data sources.</p><p>A data warehouse is a central repository of information that can be analyzed to make more informed decisions. Data flows into a data warehouse from transactional systems, relational databases and other sources, typically on a regular cadence. Business analysts, data engineers, data scientists, and decision makers access the data through business intelligence (BI) tools, SQL clients, and other analytics applications.</p><h3 id="data-lakes">Data Lakes</h3><p>The term ‘data lake’ <a href="https://jamesdixon.wordpress.com/2010/10/14/pentaho-hadoop-and-data-lakes/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">was coined around 2010</a>. Data lakes became popular because they offer a solution to the rapidly increasing size and complexity of data. As defined by <a href="https://www.techtarget.com/searchdatamanagement/definition/data-lake?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">TechTarget</a>:</p><p><em>A data lake is a storage repository that holds a vast amount of raw data in its native format until it is needed for analytics applications.</em></p><p>In addition, data lakes often provide a cheaper option in terms of data storage and computation, since they are often developed on cheaper hardware. In contrast, data warehouses are highly structured and often run on expensive hardware.</p><p>Data lakes provide the ability to store data which can have nearly no structure whatsoever, relying on the end-user to provide the schema on-read. What data lakes look like has changed rapidly from the days of Hadoop, as solutions like Delta lake are providing a very different approach to data lakes.</p><h3 id="data-lake-houses">Data Lake Houses</h3><p>Data lake houses has been a popular term recently, spearheaded by Databricks. The purpose of this paradigm is to balance the benefits of a data warehouse and data lake into a single solution.</p><p>For example, data lake houses should provide ACID (Atomicity, Consistency, Isolation, and Durability) transactions like a data warehouse while balancing the flexibility and scale of a data lake.</p><h2 id="3-why-data-engineering-is-becoming-more-important">3. Why data engineering is becoming more important</h2><p>Data has grown in size, speed and complexity. Over the past decade, the complexity of data has vastly increased. In the past, most transaction systems mostly tracked baseline information. For example, they tracked information like what someone purchased at a store, or which website they visited.</p><p>Nowadays, even basic applications can track additional information or provide even deeper functionality, which is then tracked. Tracking additional information leads to much more complex events and transactions being stored. Let’s add that users now interact with mobile and IoT devices most of the day, which increases the sheer volume and has led to what’s referred to as the “5 Vs” of Big data, velocity, volume, value, variety and veracity.</p><p>These increasing dimensions require better tooling and more specialized expertise in how to handle all this data. However, it’s not just the supply of data that’s increased. It’s also the demand.</p><p>Everyone wants access to their data. With the increasing number of analysts and data scientists, as well as the proliferation of SQL-literate employees, the demand for data has grown. Add to this the fact that today pulling and managing data is not limited to large organizations which can afford all the administration staff. Now, a small company can pay for what it uses in terms of data warehousing, storage and computation.</p><p>Tools like <a href="https://www.theseattledataguy.com/what-is-snowflakedb-and-why-you-should-use-it-for-your-cloud-data-warehouse/?ref=blog.pragmaticengineer.com" rel="noopener noreferrer nofollow">Snowflake</a> and Bigquery make storing large amounts of data considerably easier and cheaper – when set up correctly. Add in the fact that tools like Salesforce and Shopify make it easier for end-users to pull data out from them. All of this has led to companies of all sizes pushing to create data storage systems for analytics. Overall – especially in the past decade with the mass adoption of the cloud – data has just become that much easier to manage and analyze.</p><hr><p>This was it for part one. Subscribers can <a href="https://newsletter.pragmaticengineer.com/p/what-is-data-engineering?ref=blog.pragmaticengineer.com">already read the rest of the article</a>. We'll wrap up with part two next week: <a href="https://newsletter.pragmaticengineer.com/about?ref=blog.pragmaticengineer.com">subscribe</a> to get it in your inbox, or bookmark this page and check back for it!</p>
+
+
+            <!-- Newsletter -->
+            <p>
+              <a href="https://newsletter.pragmaticengineer.com/about">Subscribe to my weekly newsletter</a> to get articles like this in your inbox. It's a pretty good read - and the <a href="https://substack.com/top/technology">#1 tech newsletter</a> on Substack.
+            </p>
+            
+        </section>
+
+        <footer class="post-footer">
+
+          <section class="podcast-details">
+          <h4>The Pragmatic Engineer Podcast</h4>
+            <p>
+              Deepdives with experienced engineers and tech professionals who share their hard-earned lessons, interesting stories and advice they have on building software. 
+            </p>              
+            <p>
+              Listen to it <a href="https://open.spotify.com/show/2Bho9xCbOQMWMJ7UKmqCzD">on Spotify</a>, on <a href="https://podcasts.apple.com/us/podcast/the-pragmatic-engineer/id1769051199">Apple</a>, on <a href="https://www.youtube.com/@pragmaticengineer">YouTube</a>, or <a href="https://pragmaticpodcast.com/">on the web</a>.
+            </p>
+         </section>
+         
+         <section class="book-details">
+          <h4>The Software Engineer's Guidebook</h4>
+            <p>
+              I wrote <a href="https://www.engguidebook.com/">The Software Engineer's Guidebook</a>. Here is what Tanya Reilly, senior principal engineer and author of <a href="https://www.oreilly.com/library/view/the-staff-engineers/9781098118723/">The Staff Engineer's Path</a> says about it:
+            </p>
+              <blockquote>
+              "From performance reviews to P95 latency, from team dynamics to testing, Gergely demystifies all aspects of a software career. This book is well named: <strong>it really does feel like the missing guidebook for the whole industry.</strong>"
+              </blockquote>
+              
+              <p style="padding-top:20px">
+                <a href="https://www.engguidebook.com/">
+                  <img src="/assets/img/EngGuidebook.jpg" alt="The Software Engineer's Guidebook" style="width: 100%; max-width: 300px; margin: 0 auto; display: block;"/>
+                </a>
+              </p>
+              <p>
+                <a href="https://www.engguidebook.com/">Get the book here.</a>
+              </p>
+         </section>
+
+         <section class="conference-details">
+          <h4>Annual conference talk</h4>
+            <p>
+
+              I do up to two conference talks per year. My next ones will be at at <a href="https://wawtech.pl/">WAWTech</a> in Warsaw, on 16-17 December 2025, and at <a href="https://craft-conf.com/">Craft Conference</a> in Budapest, on 29-30 May 2025, and 
+
+              Previous talks:
+              <ul>
+                <li><a href="https://newsletter.pragmaticengineer.com/p/software-engineering-with-llms-in-2025">Software engineering with LLMs: reality check</a> - LDX3, London, 2025</li>
+                <li><a href="https://newsletter.pragmaticengineer.com/p/what-is-old-is-new-again">What is Old is New Again</a> - Craft Conference, Budapest, 2024</li>
+              </ul>
+            </p>
+            <p>
+              <strong>
+               
+                </strong>
+            </p>
+              <!--
+              
+              
+              In 2025, this will be at <a href="https://leaddev.com/leaddev-london/?utm_source=the-pragmatic-engineer&utm_medium=newsletter-social&utm_campaign=LON25-media-community-partner">LDX3 (formerly: LeadDev)</a> in London, 16 June 2025. My keynote is titled "Software engineering with GenAI." If you'll <a href="https://leaddev.com/leaddev-london/?utm_source=the-pragmatic-engineer&utm_medium=newsletter-social&utm_campaign=LON25-media-community-partner">be there</a>, come say hi!
+              
+              -->
+            
+         </section>
+
+        <section class="newsletter" id="newsletter-second"> <!-- Section that gets moved up -->
+          <h4>Newsletter</h4>
+          <p>
+            Enjoying this article? <a href="https://newsletter.pragmaticengineer.com/about">Subscribe to my newsletter</a> to get issues like this in your inbox. It's a good read and the <a href="https://substack.com/top/technology">#1 technology newsletter</a> on Substack.
+          </p>
+        </section>
+
+          <section class="authorAndShare">
+
+              <section class="author">
+
+                <h4><a href="/author/gergely/">Gergely Orosz</a></h4>
+                <section class="post-meta">
+                    Last updated <time class="post-date" datetime="2022-09-13">13 September 2022</time>. Originally published 13 Sep 2022.
+                </section>
+                    <p>Writing The Pragmatic Engineer Newsletter. Author of The Software Engineer&#x27;s Guidebook. Previously at Uber, Microsoft, Skype, Skyscanner.</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">Amsterdam, Netherlands</span>
+                    
+                </div>
+
+              </section>
+
+
+              <section class="share">
+                  <h4>Share this post</h4>
+                  <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=What%20is%20Data%20Engineering%3F&amp;url=https://blog.pragmaticengineer.com/what-is-data-engineering/"
+                      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                      <span class="hidden">Twitter</span>
+                  </a>
+                  <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.pragmaticengineer.com/what-is-data-engineering/"
+                      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                      <span class="hidden">Facebook</span>
+                  </a>
+              </section>
+            <section>
+        </footer>
+    </article>
+</main>
+
+<aside class="sidebar">
+  <img class="profile-image" src="https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2015/12/pragmatic-engineer-profile-image.png" alt="" />
+  <!--
+  // to display a custom image, copy the image into assets/img/profile-img.png and replace the previous line with this:
+  <img class="profile-image" src="https://blog.pragmaticengineer.com/assets/img/profile-image.png?v=150f442c1a" alt="" />
+  -->
+
+  <section class="publisher">by <strong>Gergely Orosz</strong></section>
+
+  <div class="nav mobile">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home elusive-icon Home" role="presentation"><a href="https://blog.pragmaticengineer.com/">Home</a></li>
+            <li class="nav-newsletter elusive-icon Newsletter" role="presentation"><a href="https://newsletter.pragmaticengineer.com/about">Newsletter</a></li>
+            <li class="nav-popular-articles elusive-icon Popular Articles" role="presentation"><a href="https://blog.pragmaticengineer.com/tag/popular/">Popular Articles</a></li>
+            <li class="nav-the-software-engineers-guidebook elusive-icon The Software Engineer&#x27;s Guidebook" role="presentation"><a href="https://www.engguidebook.com/">The Software Engineer&#x27;s Guidebook</a></li>
+            <li class="nav-my-books elusive-icon My Books" role="presentation"><a href="https://blog.pragmaticengineer.com/books/">My Books</a></li>
+            <li class="nav-early-trends elusive-icon Early trends" role="presentation"><a href="https://blog.pragmaticengineer.com/early-trends/">Early trends</a></li>
+            <li class="nav-reading-list elusive-icon Reading List" role="presentation"><a href="https://blog.pragmaticengineer.com/my-reading-list/">Reading List</a></li>
+            <li class="nav-ethics-statement elusive-icon Ethics statement" role="presentation"><a href="https://blog.pragmaticengineer.com/ethics-statement/">Ethics statement</a></li>
+            <li class="nav-write-a-guest-article elusive-icon Write a guest article" role="presentation"><a href="https://blog.pragmaticengineer.com/pragmatic-engineer-guest-article/">Write a guest article</a></li>
+            <li class="nav-sponsors elusive-icon Sponsors" role="presentation"><a href="https://blog.pragmaticengineer.com/podcast-sponsors/">Sponsors</a></li>
+            <li class="nav-investing elusive-icon Investing" role="presentation"><a href="https://blog.pragmaticengineer.com/investing/">Investing</a></li>
+            <li class="nav-now elusive-icon Now" role="presentation"><a href="https://blog.pragmaticengineer.com/now/">Now</a></li>
+            <li class="nav-contact-me elusive-icon Contact me" role="presentation"><a href="https://blog.pragmaticengineer.com/contact/">Contact me</a></li>
+            <li class="nav-about elusive-icon About" role="presentation"><a href="https://blog.pragmaticengineer.com/about/">About</a></li>
+            <li class="nav-rss-feed elusive-icon RSS Feed" role="presentation"><a href="https://blog.pragmaticengineer.com/feed/">RSS Feed</a></li>
+            <li class="nav-bluesky elusive-icon bluesky" role="presentation"><a href="https://bsky.app/profile/gergely.pragmaticengineer.com/">bluesky</a></li>
+            <li class="nav-twitter elusive-icon twitter" role="presentation"><a href="http://twitter.com/GergelyOrosz">twitter</a></li>
+            <li class="nav-youtube elusive-icon youtube" role="presentation"><a href="https://www.youtube.com/@pragmaticengineer">youtube</a></li>
+            <li class="nav-linkedin elusive-icon linkedin" role="presentation"><a href="http://www.linkedin.com/in/gergelyorosz">linkedin</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="https://blog.pragmaticengineer.com/rss/">Subscribe</a>
+</div>
+<span class="nav-cover mobile"></span>
+
+<div class="nav-desktop">
+  <ul class="sidebar-nav">
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/" class="elusive-icon Home" rel="me">Home</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://newsletter.pragmaticengineer.com/about" class="elusive-icon Newsletter" rel="me">Newsletter</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/tag/popular/" class="elusive-icon Popular Articles" rel="me">Popular Articles</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://www.engguidebook.com/" class="elusive-icon The Software Engineer&#x27;s Guidebook" rel="me">The Software Engineer&#x27;s Guidebook</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/books/" class="elusive-icon My Books" rel="me">My Books</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/early-trends/" class="elusive-icon Early trends" rel="me">Early trends</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/my-reading-list/" class="elusive-icon Reading List" rel="me">Reading List</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/ethics-statement/" class="elusive-icon Ethics statement" rel="me">Ethics statement</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/pragmatic-engineer-guest-article/" class="elusive-icon Write a guest article" rel="me">Write a guest article</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/podcast-sponsors/" class="elusive-icon Sponsors" rel="me">Sponsors</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/investing/" class="elusive-icon Investing" rel="me">Investing</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/now/" class="elusive-icon Now" rel="me">Now</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/contact/" class="elusive-icon Contact me" rel="me">Contact me</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/about/" class="elusive-icon About" rel="me">About</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://blog.pragmaticengineer.com/feed/" class="elusive-icon RSS Feed" rel="me">RSS Feed</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://bsky.app/profile/gergely.pragmaticengineer.com/" class="elusive-icon bluesky" rel="me">bluesky</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="http://twitter.com/GergelyOrosz" class="elusive-icon twitter" rel="me">twitter</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="https://www.youtube.com/@pragmaticengineer" class="elusive-icon youtube" rel="me">youtube</a>
+        </li>
+        <li class="nav-desktop" role="presentation">
+          <a href="http://www.linkedin.com/in/gergelyorosz" class="elusive-icon linkedin" rel="me">linkedin</a>
+        </li>
+  </ul>
+
+</div>
+
+
+  
+<ul>
+  <li><a href="https://blog.pragmaticengineer.com/newsletter" class="elusive-icon email">Subscribe via email</a></li>
+  <li><a href="http://feeds.feedburner.com/ThePragmaticEngineer" class="elusive-icon rss">Subscribe in a reader</a></li>
+</ul>
+
+
+
+  <footer class="site-footer clearfix">
+    <section class="copyright"><a href="https://blog.pragmaticengineer.com">The Pragmatic Engineer</a> &copy; 2022</section>
+</footer>
+
+</aside>
+
+<aside class="read-next">
+    <a class="read-next-story " style="background-image: url(https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-19-at-19.32.45.png)" href="/pollen/">
+        <section class="post">
+            <h2>Inside Pollen’s Collapse: “$200M Raised” but Staff Unpaid - Exclusive</h2>
+            <p>Exclusive details about the collapse of the formerly high-flying startup. Could tech employees have known sooner they were on a sinking ship?&hellip;</p>
+        </section>
+    </a>
+    <a class="read-next-story prev " style="background-image: url(https://storage.ghost.io/c/39/f8/39f85cc7-8637-40fc-a57c-f45754453717/content/images/2022/09/Screenshot-2022-09-08-at-11.37.02-1.png)" href="/zenly/">
+        <section class="post">
+            <h2>Inside the Shutdown of Zenly by Snap</h2>
+            <p>Snap suddenly decided to shut Zenly down: an app with 40M monthly active users, growing fast. What happened, and what can other acquisitions learn from the fate of Zenly?&hellip;</p>
+        </section>
+    </a>
+</aside>
+
+
+<!-- Signup move up -->
+<script>
+  let contentParent = document.getElementById("content");
+  let newsletterWithFormElement = document.getElementById("newsletter");
+  let newsletterWithoutFormElement = document.getElementById("newsletter-second");
+
+  let newsLetterTargetPosition = getLastElementBeforeSpecificNode(contentParent.children, "H2", 2); // Add after the 2nd h2
+
+  if(contentParent.children.length > newsLetterTargetPosition) {
+    let nextSibling = contentParent.children[newsLetterTargetPosition];
+    contentParent.insertBefore(newsletterWithoutFormElement, nextSibling);
+  } else {
+    newsletterWithoutFormElement.style.display = "none"
+  }
+
+  function getLastElementBeforeSpecificNode(nodes, nodeName, numberOfNodesToPass) {
+    var numberOfSpecificNodessSeen = 0;
+    for(let i=0;i<nodes.length; i++) {
+      if(nodes[i].nodeName == nodeName) {
+        numberOfSpecificNodessSeen += 1;
+      }
+      if(numberOfSpecificNodessSeen == numberOfNodesToPass+1) {
+        if(i > 0) {
+          return i;
+        } else {
+          return nodes.lenght;
+        }
+      }
+    }
+  }
+
+</script>
+
+    </div>
+
+    <!-- Geniuslink -->
+<!--
+<script type="text/javascript" src="//cdn.geni.us/snippet.min.js" defer></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+var tsid =116191;
+Genius.amazon.addOnClickRedirect(tsid, false, "https://buy.geni.us"); });
+</script>-->
+
+<!-- Google Analytics -->
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-7745037-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<!-- Plausible -->
+<script async defer data-domain="blog.pragmaticengineer.com" src="https://plausible.io/js/plausible.js"></script>
+
+<!-- Source code higlighting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-css.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://blog.pragmaticengineer.com/assets/js/jquery.fitvids.js?v=150f442c1a"></script>
+    <script type="text/javascript" src="https://blog.pragmaticengineer.com/assets/js/index.js?v=150f442c1a"></script>
+
+</body>
+</html>

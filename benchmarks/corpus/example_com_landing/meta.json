@@ -1,0 +1,12 @@
+{
+  "byte_length": 528,
+  "content_hash_sha256": "fb91d75a6bb430787a61b0aec5e374f580030f2878e1613eab5ca6310f7bbb9a",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T21:00:52Z",
+  "final_url": "https://example.com/",
+  "fixture_id": "example_com_landing",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://example.com/",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

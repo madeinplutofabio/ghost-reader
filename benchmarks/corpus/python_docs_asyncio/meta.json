@@ -1,0 +1,12 @@
+{
+  "byte_length": 24577,
+  "content_hash_sha256": "ddafd927513f05447dfc85a8033b6e302864deb6164b5d980d4122b71a7b6c55",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T21:00:51Z",
+  "final_url": "https://docs.python.org/3/library/asyncio.html",
+  "fixture_id": "python_docs_asyncio",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://docs.python.org/3/library/asyncio.html",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

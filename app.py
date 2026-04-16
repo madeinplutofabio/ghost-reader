@@ -21,7 +21,7 @@ from pydantic import BaseModel, Field
 from selectolax.lexbor import LexborHTMLParser
 
 APP_NAME = "GhostReader"
-APP_VERSION = "0.1.0"
+APP_VERSION = "0.2.0"
 
 USER_AGENT = os.getenv(
     "GHOSTREADER_USER_AGENT",
@@ -220,11 +220,12 @@ def enforce_domain_policy(url: str) -> None:
 
 
 
-def url_cache_key(url: str, browser_fallback: bool) -> str:
+def url_cache_key(url: str, browser_fallback: bool, respect_robots: bool) -> str:
     key_material = json.dumps(
         {
             "url": normalize_url(url),
             "browser_fallback": browser_fallback,
+            "respect_robots": respect_robots,
             "ua": USER_AGENT,
         },
         sort_keys=True,
@@ -586,20 +587,34 @@ async def render_with_playwright(url: str, respect_robots: bool) -> str:
     return truncate_text(clean_whitespace("\n\n".join(network_texts[:3])))
 
 
-async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> ReadResponse:
-    normalized = normalize_url(url)
-    enforce_domain_policy(normalized)
+async def extract_from_html(
+    html: str,
+    source_url: str,
+    *,
+    browser_fallback: bool = True,
+    respect_robots: bool = True,
+) -> ReadResponse:
+    """Run the staged extraction pipeline against already-fetched HTML.
 
-    html, final_url, _content_type = await fetch_html(normalized, respect_robots=respect_robots)
+    Stages 1 & 2 operate purely on `html`. Stage 3 (only when
+    browser_fallback=True) re-navigates to `source_url` via Playwright;
+    `render_with_playwright` performs its own robots check, so
+    `respect_robots` is threaded through to preserve exact pre-refactor
+    Stage 3 semantics.
+
+    Returns a ReadResponse with both `url` and `final_url` set to
+    `source_url`. Callers that know the original (pre-redirect) URL
+    should overwrite `result.url` after this returns — see `read_text`.
+    """
     tree = LexborHTMLParser(html)
     title = extract_title(tree)
 
-    raw_text = extract_with_trafilatura(html, final_url)
+    raw_text = extract_with_trafilatura(html, source_url)
     raw_score, raw_stats = score_text(raw_text, title)
     if raw_score >= 0.56:
         return ReadResponse(
-            url=normalized,
-            final_url=final_url,
+            url=source_url,
+            final_url=source_url,
             title=title,
             text_markdown=raw_text,
             method="raw_html",
@@ -619,8 +634,8 @@ async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> R
             title_overlap = sum(1 for tok in title_tokens if tok in raw_text.lower()) / len(title_tokens)
             if title_overlap >= 0.5:
                 return ReadResponse(
-                    url=normalized,
-                    final_url=final_url,
+                    url=source_url,
+                    final_url=source_url,
                     title=title,
                     text_markdown=raw_text,
                     method="raw_html",
@@ -642,8 +657,8 @@ async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> R
     combined_score, combined_stats = score_text(combined, title)
     if combined_score >= 0.45:
         return ReadResponse(
-            url=normalized,
-            final_url=final_url,
+            url=source_url,
+            final_url=source_url,
             title=title,
             text_markdown=combined,
             method="embedded_data",
@@ -660,12 +675,12 @@ async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> R
         )
 
     if browser_fallback:
-        rendered = await render_with_playwright(final_url, respect_robots=respect_robots)
+        rendered = await render_with_playwright(source_url, respect_robots=respect_robots)
         rendered_score, rendered_stats = score_text(rendered, title)
         if rendered:
             return ReadResponse(
-                url=normalized,
-                final_url=final_url,
+                url=source_url,
+                final_url=source_url,
                 title=title,
                 text_markdown=rendered,
                 method="browser_fallback",
@@ -678,8 +693,8 @@ async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> R
     best_text = combined or raw_text
     best_score, best_stats = score_text(best_text, title)
     return ReadResponse(
-        url=normalized,
-        final_url=final_url,
+        url=source_url,
+        final_url=source_url,
         title=title,
         text_markdown=best_text,
         method="best_effort",
@@ -688,6 +703,37 @@ async def read_text(url: str, browser_fallback: bool, respect_robots: bool) -> R
         extracted_at=int(time.time()),
         hints={"stage": "fallback", "stats": best_stats},
     )
+
+
+async def read_text(
+    url: str,
+    browser_fallback: bool = True,
+    respect_robots: bool = True,
+) -> ReadResponse:
+    """Fetch `url` and run extraction. Thin wrapper around extract_from_html.
+
+    Signature kept positional- and default-compatible with v0.1: callers
+    that do `await read_text(url)` continue to work unchanged.
+    """
+    normalized = normalize_url(url)
+    enforce_domain_policy(normalized)
+
+    html, final_url, _content_type = await fetch_html(normalized, respect_robots=respect_robots)
+
+    result = await extract_from_html(
+        html,
+        source_url=final_url,
+        browser_fallback=browser_fallback,
+        respect_robots=respect_robots,
+    )
+
+    # Preserve v0.1 behavior: response.url is the normalized input URL,
+    # response.final_url is the post-redirect URL. extract_from_html fills
+    # both with source_url (which is final_url here); patch url back to
+    # the pre-redirect normalized form. Direct mutation is safe because
+    # the ReadResponse was just constructed inside extract_from_html.
+    result.url = normalized
+    return result
 
 
 @app.get("/healthz")
@@ -710,7 +756,11 @@ async def read_endpoint(
     x_cache_bypass: Optional[str] = Header(default=None),
 ) -> ReadResponse:
     normalized = normalize_url(url)
-    cache_key = url_cache_key(normalized, browser_fallback=browser_fallback)
+    cache_key = url_cache_key(
+        normalized,
+        browser_fallback=browser_fallback,
+        respect_robots=respect_robots,
+    )
 
     bypass_cache = (x_cache_bypass or "").lower() in {"1", "true", "yes"}
     if not bypass_cache:

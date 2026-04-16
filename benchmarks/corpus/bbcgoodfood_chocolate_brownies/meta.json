@@ -1,0 +1,12 @@
+{
+  "byte_length": 563034,
+  "content_hash_sha256": "bb55fe6c5474de25cc7a6d62aba8e89870d28a556a44b917ae97c66a8a2dcf8f",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:17:01Z",
+  "final_url": "https://www.bbcgoodfood.com/recipes/best-ever-chocolate-brownies-recipe",
+  "fixture_id": "bbcgoodfood_chocolate_brownies",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://www.bbcgoodfood.com/recipes/best-ever-chocolate-brownies-recipe",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

@@ -1,0 +1,13 @@
+{
+  "byte_length": 103437,
+  "content_hash_sha256": "44c0cd4442f029fd24064ff1981454f32b394c1b5934805790166faf1f172704",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T22:59:31Z",
+  "final_url": "https://en.wikipedia.org/wiki/Mercury_(disambiguation)",
+  "fixture_id": "wikipedia_mercury_disambiguation",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://en.wikipedia.org/wiki/Mercury_(disambiguation)",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

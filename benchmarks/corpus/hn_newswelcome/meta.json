@@ -1,0 +1,13 @@
+{
+  "byte_length": 3114,
+  "content_hash_sha256": "bd4c7f86266220676ace0c2cc43e07d1a5cde0d90031df2f58f06470c0948bca",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T23:06:44Z",
+  "final_url": "https://news.ycombinator.com/newswelcome.html",
+  "fixture_id": "hn_newswelcome",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://news.ycombinator.com/newswelcome.html",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

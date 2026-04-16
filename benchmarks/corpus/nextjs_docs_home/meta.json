@@ -1,0 +1,12 @@
+{
+  "byte_length": 804300,
+  "content_hash_sha256": "10bd268ee2b815cebd532e28d6dcc08ef22b3eddefb317f1bc009f53680e53b1",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:50:53Z",
+  "final_url": "https://nextjs.org/docs",
+  "fixture_id": "nextjs_docs_home",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://nextjs.org/docs",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

@@ -1,0 +1,12 @@
+{
+  "byte_length": 1140466,
+  "content_hash_sha256": "50be8aeb0a41779292074e3bdce149a410efa27ae73b6f90ada1cfbcf50abbc9",
+  "content_type": "text/html;charset=UTF-8",
+  "fetched_at": "2026-04-15T21:44:42Z",
+  "final_url": "https://apnews.com/article/climate-change-warming-hot-record-2024-disasters-12f899f071fcdbd051ad49a872611e92",
+  "fixture_id": "apnews_2024_hottest_year",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://apnews.com/article/climate-change-warming-hot-record-2024-disasters-12f899f071fcdbd051ad49a872611e92",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

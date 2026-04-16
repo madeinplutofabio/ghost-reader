@@ -1,0 +1,13 @@
+{
+  "byte_length": 55888,
+  "content_hash_sha256": "500beb6c724f6a8a644c64d492f27e3dc52845b2348a754ddbfc6289557f7520",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:48:23Z",
+  "final_url": "https://gohugo.io/totally-made-up-xyz12345",
+  "fixture_id": "gohugo_404",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://gohugo.io/totally-made-up-xyz12345",
+  "status_code": 404,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

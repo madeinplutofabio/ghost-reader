@@ -1,0 +1,12 @@
+{
+  "byte_length": 2329961,
+  "content_hash_sha256": "70f6bd9232b088708df2a3668c511875bc0fc6621da503a3e360b59c1138b2ad",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:55:54Z",
+  "final_url": "https://github.com/vercel/next.js/discussions/41745",
+  "fixture_id": "github_discussion_feedback_app_dir",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://github.com/vercel/next.js/discussions/41745",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

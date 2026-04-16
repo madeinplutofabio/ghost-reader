@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "_comment": "Live-mode fixtures are a reality check only — never gate release. Quality assertions tolerate content drift; structural phrases preferred over exact quotes. No html_path and no fetched_at; live mode fetches fresh each run. NOTE: this is data, not a JSON-language comment — the loader must ignore unknown top-level keys (it reads only schema_version and fixtures). Optional per-fixture fields expected_outcome and allowed_methods follow the same semantics as fixtures_frozen.json: for non-success fixtures only forbidden_clean, method_allowed, and latency_band_ok gate.",
+  "fixtures": [
+    {
+      "id": "wikipedia_http_live",
+      "source_url": "https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "category": "wikipedia",
+      "expected_title_contains": "HTTP",
+      "required_phrases": [
+        "application protocol",
+        "World Wide Web"
+      ],
+      "forbidden_phrases": [
+        "Cookie preferences",
+        "Create account"
+      ],
+      "min_word_count": 1500,
+      "max_word_count": 15000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Live reality check that Stage 1 still dominates long-form Wikipedia. Deliberately a different article from the frozen Wikipedia fixture so drift comes from the real web, not from the same cached snapshot. Title check is 'HTTP' (not 'Hypertext Transfer Protocol') because Wikipedia migrated this article to its short title; the long form is now a redirect — captured by live mode 2026-04-15."
+    },
+    {
+      "id": "nextjs_homepage_live",
+      "source_url": "https://nextjs.org/",
+      "category": "nextjs_spa",
+      "expected_title_contains": "Next.js",
+      "required_phrases": [
+        "The React Framework"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 50,
+      "max_word_count": 5000,
+      "preferred_methods": ["raw_html", "embedded_data", "browser_fallback"],
+      "notes": "Next.js marketing homepage. Which stage wins is itself the observation — all three methods allowed so method_ok is permissive here. Primary signal is the efficiency check cheaper_path_sufficient: when full pipeline picks browser_fallback, a second pass with browser_fallback=False tells us whether Stage 3 was actually needed on this snapshot of the page. Single durable phrase ('The React Framework') after marketing copy drift was observed 2026-04-15; if this one ever fails, the page has been substantially rewritten and the fixture needs a fresh anchor phrase."
+    },
+    {
+      "id": "arxiv_pdf_live_edge",
+      "source_url": "https://arxiv.org/pdf/1706.03762.pdf",
+      "category": "edge_cases",
+      "expected_outcome": "graceful_failure",
+      "expected_fetch_failure": true,
+      "expected_status_code": 415,
+      "notes": "Live edge: a PDF URL must be refused by the content-type guard in fetch_html (HTTPException 415, 'Unsupported content type'). The harness asserts the refusal mode, not the absence of a fetch — proves that production correctly declines PDFs at the fetch boundary instead of silently extracting noise. arXiv 1706.03762 ('Attention Is All You Need') chosen as a durable, public, conventional .pdf URL that is unlikely to be rehomed."
+    },
+    {
+      "id": "wikipedia_404_live_edge",
+      "source_url": "https://en.wikipedia.org/wiki/__nonexistent_ghostreader_probe__",
+      "category": "edge_cases",
+      "expected_outcome": "graceful_failure",
+      "expected_fetch_failure": true,
+      "expected_status_code": 404,
+      "notes": "Live edge: a deliberately dead Wikipedia path that returns HTTP 404. Asserts that fetch_with_retries surfaces the 404 as httpx.HTTPStatusError rather than retrying it as a transient error or returning a soft-200 with HTML chrome. The leading underscores in the path make this string extremely unlikely to become a real article title."
+    }
+  ]
+}

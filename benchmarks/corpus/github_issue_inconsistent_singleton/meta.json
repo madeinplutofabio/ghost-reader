@@ -1,0 +1,12 @@
+{
+  "byte_length": 322117,
+  "content_hash_sha256": "6183f1d167d1208cdc644090b571c2955014b24378b313004e6b29947b1fcfa1",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:55:57Z",
+  "final_url": "https://github.com/vercel/next.js/issues/65350",
+  "fixture_id": "github_issue_inconsistent_singleton",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://github.com/vercel/next.js/issues/65350",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

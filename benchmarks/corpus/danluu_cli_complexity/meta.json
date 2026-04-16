@@ -1,0 +1,12 @@
+{
+  "byte_length": 37278,
+  "content_hash_sha256": "d108963d3c48b318344284bbc3405704b9b6b8a94e7df5190ac576e336acc5e4",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:23:47Z",
+  "final_url": "https://danluu.com/cli-complexity/",
+  "fixture_id": "danluu_cli_complexity",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://danluu.com/cli-complexity/",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

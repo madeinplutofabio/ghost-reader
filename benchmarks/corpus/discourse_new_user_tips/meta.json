@@ -1,0 +1,12 @@
+{
+  "byte_length": 76114,
+  "content_hash_sha256": "509a0c87d29df43c222bcba0d0346a78712149e5dca68076e828d8274bc978f3",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:50:57Z",
+  "final_url": "https://meta.discourse.org/t/discourse-new-user-tips-and-tricks/54341",
+  "fixture_id": "discourse_new_user_tips",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://meta.discourse.org/t/discourse-new-user-tips-and-tricks/54341",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

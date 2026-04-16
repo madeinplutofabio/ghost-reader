@@ -1,0 +1,12 @@
+{
+  "byte_length": 568875,
+  "content_hash_sha256": "98a77ed0e3ff7d41b5590048a02da97c7ad3adf659f86f22a2eeb9f088b88eb7",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T22:17:03Z",
+  "final_url": "https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/",
+  "fixture_id": "sallys_chewy_chocolate_chip_cookies",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

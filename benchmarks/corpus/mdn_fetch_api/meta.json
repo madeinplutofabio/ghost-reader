@@ -1,0 +1,12 @@
+{
+  "byte_length": 145483,
+  "content_hash_sha256": "fa2675da7d539c27aafb598c77a2c3f052ba61ad3df64bcaceaf14f9e06a8f08",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T21:00:51Z",
+  "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+  "fixture_id": "mdn_fetch_api",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

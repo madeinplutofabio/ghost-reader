@@ -1,0 +1,13 @@
+{
+  "byte_length": 660216,
+  "content_hash_sha256": "7f2e0190174748ff4df39b148554ddd1e41b22f34a42e1a5d5fc36a17c2b6cf2",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T23:06:42Z",
+  "final_url": "https://en.wikipedia.org/wiki/Photosynthesis",
+  "fixture_id": "wikipedia_photosynthesis",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://en.wikipedia.org/wiki/Photosynthesis",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

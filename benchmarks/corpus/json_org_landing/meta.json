@@ -1,0 +1,13 @@
+{
+  "byte_length": 27427,
+  "content_hash_sha256": "0ffa966f60ef9477b8e095165d84d4ebcdb078ae6b1611f2f126ec36e2d0c65e",
+  "content_type": "text/html",
+  "fetched_at": "2026-04-15T23:06:45Z",
+  "final_url": "https://www.json.org/json-en.html",
+  "fixture_id": "json_org_landing",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://www.json.org/json-en.html",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

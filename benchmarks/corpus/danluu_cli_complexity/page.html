@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>The growth of command line options, 1979-Present</title><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><style>
+img{max-width:100%;height:auto;}
+pre{max-width:100%;height:auto;white-space:pre-wrap}
+.np{display:flex;flex-flow:row wrap;justify-content:space-between;padding-bottom:.5em;font-style:italic;}
+</style><link rel="icon" href="data:;base64,=">
+
+</head><body><header><strong>The growth of command line options, 1979-Present</strong>
+| <a href="https://patreon.com/danluu">Patreon</a><hr></header><main>
+
+
+<p><a href="https://www.xkcd.com/1795/">My hobby</a>: opening up <a href="/mcilroy-unix/">McIlroy’s UNIX philosophy</a> on one monitor while reading manpages on the other.</p>
+
+<p>The first of McIlroy's dicta is often paraphrased as &quot;do one thing and do it well&quot;, which is <a href="/mcilroy-unix/">shortened from</a> &quot;Make each program do one thing well. To do a new job, build afresh rather than complicate old programs by adding new 'features.'&quot;</p>
+
+<p>McIlroy's example of this dictum is:</p>
+
+<blockquote>
+<p>Surprising to outsiders is the fact that UNIX compilers produce no listings: printing can be done better and more flexibly by a separate program.</p>
+</blockquote>
+
+<p>If you open up a manpage for <code>ls</code> on mac, you’ll see that it starts with</p>
+
+<pre><code>ls [-ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1] [file ...]
+</code></pre>
+
+<p>That is, the one-letter flags to <code>ls</code> include every lowercase letter except for <code>{jvyz}</code>, 14 uppercase letters, plus <code>@</code> and <code>1</code>. That’s 22 + 14 + 2 = 38 single-character options alone.</p>
+
+<p>On ubuntu 17, if you read the manpage for coreutils <code>ls</code>, you don’t get a nice summary of options, but you’ll see that <code>ls</code> has 58 options (including <code>--help</code> and <code>--version</code>).</p>
+
+<p>To see if <code>ls</code> is an aberration or if it's normal to have commands that do this much stuff, we can look at some common commands, sorted by frequency of use.</p>
+
+<p><style>table {border-collapse:collapse;margin:0px auto;}table,th,td {border: 1px solid black;}td {text-align:center;}</style>
+<table>
+<tr>
+<th>command</th><th>1979</th><th>1996</th><th>2015</th><th>2017</th></tr>
+<tr>
+<td>ls</td><td bgcolor=#6baed6><font color=black>11</font></td><td bgcolor=#2171b5><font color=white>42</font></td><td bgcolor=#08519c><font color=white>58</font></td><td bgcolor=#08519c><font color=white>58</font></td></tr>
+<tr>
+<td>rm</td><td bgcolor=#deebf7><font color=black>3</font></td><td bgcolor=#9ecae1><font color=black>7</font></td><td bgcolor=#6baed6><font color=black>11</font></td><td bgcolor=#6baed6><font color=black>12</font></td></tr>
+<tr>
+<td>mkdir</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#c6dbef><font color=black>4</font></td><td bgcolor=#9ecae1><font color=black>6</font></td><td bgcolor=#9ecae1><font color=black>7</font></td></tr>
+<tr>
+<td>mv</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#9ecae1><font color=black>9</font></td><td bgcolor=#6baed6><font color=black>13</font></td><td bgcolor=#6baed6><font color=black>14</font></td></tr>
+<tr>
+<td>cp</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#4292c6><font color=black>18</font></td><td bgcolor=#2171b5><font color=white>30</font></td><td bgcolor=#2171b5><font color=white>32</font></td></tr>
+<tr>
+<td>cat</td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#6baed6><font color=black>12</font></td></tr>
+<tr>
+<td>pwd</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#deebf7><font color=black>2</font></td><td bgcolor=#c6dbef><font color=black>4</font></td><td bgcolor=#c6dbef><font color=black>4</font></td></tr>
+<tr>
+<td>chmod</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#9ecae1><font color=black>6</font></td><td bgcolor=#9ecae1><font color=black>9</font></td><td bgcolor=#9ecae1><font color=black>9</font></td></tr>
+<tr>
+<td>echo</td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#c6dbef><font color=black>4</font></td><td bgcolor=#c6dbef><font color=black>5</font></td><td bgcolor=#c6dbef><font color=black>5</font></td></tr>
+<tr>
+<td>man</td><td bgcolor=#c6dbef><font color=black>5</font></td><td bgcolor=#6baed6><font color=black>16</font></td><td bgcolor=#2171b5><font color=white>39</font></td><td bgcolor=#2171b5><font color=white>40</font></td></tr>
+<tr>
+<td>which</td><td bgcolor=silver><font color=black></font></td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#f7fbff><font color=black>1</font></td></tr>
+<tr>
+<td>sudo</td><td bgcolor=silver><font color=black></font></td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#4292c6><font color=black>23</font></td><td bgcolor=#4292c6><font color=black>25</font></td></tr>
+<tr>
+<td>tar</td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#08519c><font color=white>53</font></td><td bgcolor=black><font color=white>134</font></td><td bgcolor=black><font color=white>139</font></td></tr>
+<tr>
+<td>touch</td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#9ecae1><font color=black>9</font></td><td bgcolor=#6baed6><font color=black>11</font></td><td bgcolor=#6baed6><font color=black>11</font></td></tr>
+<tr>
+<td>clear</td><td bgcolor=silver><font color=black></font></td><td bgcolor=white><font color=black>0</font></td><td bgcolor=white><font color=black>0</font></td><td bgcolor=white><font color=black>0</font></td></tr>
+<tr>
+<td>find</td><td bgcolor=#6baed6><font color=black>14</font></td><td bgcolor=#08519c><font color=white>57</font></td><td bgcolor=#08519c><font color=white>82</font></td><td bgcolor=#08519c><font color=white>82</font></td></tr>
+<tr>
+<td>ln</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#6baed6><font color=black>11</font></td><td bgcolor=#6baed6><font color=black>15</font></td><td bgcolor=#6baed6><font color=black>16</font></td></tr>
+<tr>
+<td>ps</td><td bgcolor=#c6dbef><font color=black>4</font></td><td bgcolor=#4292c6><font color=black>22</font></td><td bgcolor=#08306b><font color=white>85</font></td><td bgcolor=#08306b><font color=white>85</font></td></tr>
+<tr>
+<td>ping</td><td bgcolor=silver><font color=black></font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#2171b5><font color=white>29</font></td></tr>
+<tr>
+<td>kill</td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#deebf7><font color=black>3</font></td><td bgcolor=#deebf7><font color=black>3</font></td><td bgcolor=#deebf7><font color=black>3</font></td></tr>
+<tr>
+<td>ifconfig</td><td bgcolor=silver><font color=black></font></td><td bgcolor=#6baed6><font color=black>16</font></td><td bgcolor=#4292c6><font color=black>25</font></td><td bgcolor=#4292c6><font color=black>25</font></td></tr>
+<tr>
+<td>chown</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#9ecae1><font color=black>6</font></td><td bgcolor=#6baed6><font color=black>15</font></td><td bgcolor=#6baed6><font color=black>15</font></td></tr>
+<tr>
+<td>grep</td><td bgcolor=#6baed6><font color=black>11</font></td><td bgcolor=#4292c6><font color=black>22</font></td><td bgcolor=#2171b5><font color=white>45</font></td><td bgcolor=#2171b5><font color=white>45</font></td></tr>
+<tr>
+<td>tail</td><td bgcolor=#f7fbff><font color=black>1</font></td><td bgcolor=#9ecae1><font color=black>7</font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#6baed6><font color=black>13</font></td></tr>
+<tr>
+<td>df</td><td bgcolor=white><font color=black>0</font></td><td bgcolor=#6baed6><font color=black>10</font></td><td bgcolor=#4292c6><font color=black>17</font></td><td bgcolor=#4292c6><font color=black>18</font></td></tr>
+<tr>
+<td>top</td><td bgcolor=silver><font color=black></font></td><td bgcolor=#9ecae1><font color=black>6</font></td><td bgcolor=#6baed6><font color=black>12</font></td><td bgcolor=#6baed6><font color=black>14</font></td></tr>
+</table></p>
+
+<p>This table has the number of command line options for various commands for v7 Unix (1979), slackware 3.1 (1996), ubuntu 12 (2015), and ubuntu 17 (2017). Cells are darker and blue-er when they have more options (log scale) and are greyed out if no command was found.</p>
+
+<p>We can see that the number of command line options has dramatically increased over time; entries tend to get darker going to the right (more options) and there are no cases where entries get lighter (fewer options). </p>
+
+<p><a href="https://archive.org/details/DougMcIlroy_AncestryOfLinux_DLSLUG">McIlroy has long decried the increase in the number of options, size, and general functionality of commands</a><sup class="footnote-ref" id="fnref:M"><a rel="footnote" href="#fn:M">1</a></sup>:</p>
+
+<blockquote>
+<p>Everything was small and my heart sinks for Linux when I see the size [inaudible]. The same utilities that used to fit in eight k[ilobytes] are a meg now. And the manual page, which used to really fit on, which used to really be a manual <em>page</em>, is now a small volume with a thousand options... We used to sit around in the UNIX room saying &quot;what can we throw out? Why is there this option?&quot; It's usually, it's often because there's some deficiency in the basic design — you didn't really hit the right design point. Instead of putting in an option, figure out why, what was forcing you to add that option. This viewpoint, which was imposed partly because there was very small hardware ... has been lost and we're not better off for it.</p>
+</blockquote>
+
+<p>Ironically, one of the reasons for the rise in the number of command line options is another McIlroy dictum, &quot;Write programs to handle text streams, because that is a universal interface&quot; (see <code>ls</code> for one example of this).</p>
+
+<p>If structured data or objects were passed around, formatting could be left to a final formatting pass. But, with plain text, the formatting and the content are intermingled; because formatting can only be done by parsing the content out, it's common for commands to add formatting options for convenience. Alternately, formatting can be done when the user leverages their knowledge of the structure of the data and encodes that knowledge into arguments to <code>cut</code>, <code>awk</code>, <code>sed</code>, etc. (also using their knowledge of how those programs handle formatting; it's different for different programs and the user is expected to, for example, <a href="https://unix.stackexchange.com/a/132322/261842">know how <code>cut -f4</code> is different from <code>awk '{ print $4 }'</code></a><sup class="footnote-ref" id="fnref:T"><a rel="footnote" href="#fn:T">2</a></sup>). That's a lot more hassle than passing in one or two arguments to the last command in a sequence and it pushes the complexity from the tool to the user.</p>
+
+<p>People sometimes say that they don't want to support structured data because they'd have to support multiple formats to make a universal tool, but they already have to support multiple formats to make a universal tool. Some standard commands can't read output from other commands because they use different formats, <code>wc -w</code> doesn't handle Unicode correctly, etc. Saying that &quot;text&quot; is a universal format is like saying that &quot;binary&quot; is a universal format.</p>
+
+<p>I've heard people say that there isn't really any alternative to this kind of complexity for command line tools, but people who say that have never really tried the alternative, something like PowerShell. I have plenty of complaints about PowerShell, but passing structured data around and easily being able to operate on structured data without having to hold metadata information in my head so that I can pass the appropriate metadata to the right command line tools at that right places the pipeline isn't among my complaints<sup class="footnote-ref" id="fnref:W"><a rel="footnote" href="#fn:W">3</a></sup>.</p>
+
+<p>The sleight of hand that's happening when someone says that we can keep software simple and compatible by making everything handle text is the pretense that text data doesn't have a structure that needs to be parsed<sup class="footnote-ref" id="fnref:C"><a rel="footnote" href="#fn:C">4</a></sup>. In some cases, we can just think of everything as a single space separated line, or maybe a table with some row and column separators that we specify (<a href="https://unix.stackexchange.com/a/132322/261842">with some behavior that isn't consistent across tools, of course</a>). That adds some hassle when it works, and then there are the cases where serializing data to a flat text format adds considerable complexity since the structure of data means that simple flattening requires significant parsing work to re-ingest the data in a meaningful way.</p>
+
+<p>Another reason commands now have more options is that people have added convenience flags for functionality that could have been done by cobbling together a series of commands. These go all the way back to v7 unix, where <code>ls</code> has an option to reverse the sort order (which could have been done by passing the output to something like <code>tac</code> had they written <code>tac</code> instead of adding a special-case reverse option).</p>
+
+<p>Over time, more convenience options have been added. For example, to pick a command that originally has zero options, <code>mv</code> can move <em>and</em> create a backup (three options; two are different ways to specify a backup, one of which takes an argument and the other of which takes zero explicit arguments and reads an implicit argument from the <code>VERSION_CONTROL</code> environment variable; one option allows overriding the default backup suffix). <code>mv</code> now also has options to never overwrite and to only overwrite if the file is newer.</p>
+
+<p><code>mkdir</code> is another program that used to have no options where, excluding security things for SELinux or SMACK as well as help and version options, the added options are convenience flags: setting the permissions of the new directory and making parent directories if they don't exist.</p>
+
+<p>If we look at <code>tail</code>, which originally had one option (<code>-number</code>, telling <code>tail</code> where to start), it's added both formatting and convenience options For formatting, it has <code>-z</code>, which makes the line delimiter <code>null</code> instead of a newline. Some examples of convenience options are <code>-f</code> to print when there are new changes, <code>-s</code> to set the sleep interval between checking for <code>-f</code> changes, <code>--retry</code> to retry if the file isn't accessible.</p>
+
+<p>McIlroy says &quot;we're not better off&quot; for having added all of these options but I'm better off. I've never used some of the options we've discussed and only rarely use others, but that's the beauty of command line options — unlike with a GUI, adding these options doesn't clutter up the interface. The manpage can get cluttered, but in the age of google and stackoverflow, I suspect many people just search for a solution to what they're trying to do without reading the manpage anyway.</p>
+
+<p>This isn't to say there's no cost to adding options — more options means more maintenance burden, but that's a cost that maintainers pay to benefit users, which isn't obviously unreasonable considering the ratio of maintainers to users. This is analogous to Gary Bernhardt's comment that it's reasonable to practice a talk fifty times since, if there's a three hundred person audience, the ratio of time spent watching to the talk to time spent practicing will still only be 1:6. In general, this ratio will be even more extreme with commonly used command line tools.</p>
+
+<p>Someone might argue that all these extra options create a burden for users. That's not exactly wrong, but that complexity burden was always going to be there, it's just a question of where the burden was going to lie. If you think of the set of command line tools along with a shell as forming a language, a language where anyone can write a new method and it effectively gets added to the standard library if it becomes popular, where standards are defined by dicta like &quot;write programs to handle text streams, because that is a universal interface&quot;, the language was always going to turn into a write-only incoherent mess when taken as a whole. At least with tools that bundle up more functionality and options than is UNIX-y users can replace a gigantic set of wildly inconsistent tools with a merely large set of tools that, while inconsistent with each other, may have some internal consistency.</p>
+
+<p>McIlroy implies that the problem is that people didn't think hard enough, the old school UNIX mavens would have sat down in the same room and thought longer and harder until they came up with a set of consistent tools that has &quot;unusual simplicity&quot;. But that was never going to scale, the philosophy made the mess we're in inevitable. It's not a matter of not thinking longer or harder; it's a matter of having a philosophy that cannot scale unless you have a relatively small team with a shared cultural understanding, able to to sit down in the same room.</p>
+
+<p>Many of the main long-term UNIX anti-features and anti-patterns that we're still stuck with today, fifty years later, come from the &quot;we should all act like we're in the same room&quot; design philosophy, which is the opposite of the approach you want if you want to create nice, usable, general, interfaces that can adapt to problems that the original designers didn't think of. For example, it's a common complain that modern shells and terminals lack a bunch of obvious features that anyone designing a modern interface would want. When you talk to people who've written a new shell and a new terminal with modern principles in mind, like Jesse Luehrs, they'll note that a major problem is that the UNIX model doesn't have a good seperation of interface and implementation, which works ok if you're going to write a terminal that acts in the same way that a terminal that was created fifty years ago acts, but is immediately and obviously problematic if you want to build a modern terminal. That design philosophy works fine if everyone's in the same room and the system doesn't need to scale up the number of contributors or over time, but that's simply not the world we live in today.</p>
+
+<p>If anyone can write a tool and the main instruction comes from &quot;the unix philosophy&quot;, people will have different opinions about what &quot;<a href="https://twitter.com/hillelogram/status/1174714902151421952">simplicity</a>&quot; or &quot;doing one thing&quot;<sup class="footnote-ref" id="fnref:P"><a rel="footnote" href="#fn:P">5</a></sup> means, what the right way to do things is, and inconsistency will bloom, resulting in the kind of complexity you get when dealing with a wildly inconsistent language, like PHP. People make fun of PHP and javascript for having all sorts of warts and weird inconsistencies, but as a language and a standard library, any commonly used shell plus the collection of widely used *nix tools taken together is much worse and contains much more accidental complexity due to inconsistency even within a single Linux distro and there's no other way it could have turned out. If you compare across Linux distros, BSDs, Solaris, AIX, etc.,  the amount of accidental complexity that users have to hold in their heads when switching systems dwarfs PHP or javascript's incoherence. The most widely mocked programming languages are paragons of great design by comparison.</p>
+
+<p><a id="maven"></a>To be clear, I'm not saying that I or anyone else could have done better with the knowledge available in the 70s in terms of making a system that was practically useful at the time that would be elegant today. It's easy to look back and find issues with the benefit of hindsight. What I disagree with are comments from Unix mavens speaking today; comments like McIlroy's, which imply that we just forgot or don't understand the value of simplicity, or <a href="https://twitter.com/danluu/status/885214004649615360">Ken Thompson saying that C is as safe a language as any and if we don't want bugs we should just write bug-free code</a>. These kinds of comments imply that there's not much to learn from hindsight; in the 70s, we were building systems as effectively as anyone can today; five decades of collective experience, tens of millions of person-years, have taught us nothing; if we just go back to building systems like the original Unix mavens did, all will be well. I respectfully disagree.</p>
+
+<h3 id="appendix-memory">Appendix: memory</h3>
+
+<p>Although addressing McIlroy's complaints about binary size bloat is a bit out of scope for this, I will note that, in 2017, I bought a Chromebook that had 16GB of RAM for $300. A 1 meg binary might have been a serious problem in 1979, when a standard Apple II had 4KB. An Apple II cost $1298 in 1979 dollars, or $4612 in 2020 dollars. You can get a low end Chromebook that costs less than 1/15th as much which has four million times more memory. Complaining that memory usage grew by a factor of one thousand when a (portable!) machine that's more than an order of magnitude cheaper has four million times more memory seems a bit ridiculous.</p>
+
+<p>I prefer slimmer software, which is why I optimized my home page down to two packets (it would be a single packet if my CDN served high-level brotli), but that's purely an aesthetic preference, something I do for fun. The bottleneck for command line tools isn't memory usage and spending time optimizing the memory footprint of a tool that takes one meg is like getting a homepage down to a single packet. Perhaps a fun hobby, but not something that anyone should prescribe.</p>
+
+<h3 id="methodology-for-table">Methodology for table</h3>
+
+<p>Command frequencies were sourced from public command history files on github, not necessarily representative of your personal usage. Only &quot;simple&quot; commands were kept, which ruled out things like curl, git, gcc (which has &gt; 1000 options), and wget. What's considered simple is arbitrary. <a href="https://en.wikipedia.org/wiki/Shell_builtin">Shell builtins</a>, like <code>cd</code> weren't included.</p>
+
+<p>Repeated options aren't counted as separate options. For example, <code>git blame -C</code>, <code>git blame -C -C</code>, and <code>git blame -C -C -C</code> have different behavior, but these would all be counted as a single argument even though <code>-C -C</code> is effectively a different argument from <code>-C</code>.</p>
+
+<p>The table counts sub-options as a single option. For example, <code>ls</code> has the following:</p>
+
+<blockquote>
+<p>--format=WORD
+across -x, commas -m,  horizontal  -x,  long  -l,  single-column  -1,  verbose  -l, vertical -C</p>
+</blockquote>
+
+<p>Even though there are seven format options, this is considered to be only one option.</p>
+
+<p>Options that are explicitly listed as not doing anything are still counted as options, e.g., <code>ls -g</code>, which reads <code>Ignored; for Unix compatibility.</code> is counted as an option.</p>
+
+<p>Multiple versions of the same option are also considered to be one option. For example, with <code>ls</code>, <code>-A</code> and <code>--almost-all</code> are counted as a single option.</p>
+
+<p>In cases where the manpage says an option is supposed to exist, but doesn't, the option isn't counted. For example, the v7 <code>mv</code> manpage says</p>
+
+<blockquote>
+<p>BUGS</p>
+
+<p>If file1 and file2 lie on different file systems, mv must copy the file and delete the original.  In this case the owner name becomes that of the copying process and any linking relationship with other files is lost.</p>
+
+<p>Mv should take <strong>-f</strong> flag, like rm, to suppress the question if the target exists and is not writable.</p>
+</blockquote>
+
+<p><code>-f</code> isn't counted as a flag in the table because the option doesn't actually exist.</p>
+
+<p>The latest year in the table is 2017 because I wrote the first draft for this post in 2017 and didn't get around to cleaning it up until 2020.</p>
+
+<h3 id="related">Related</h3>
+
+<p><a href="https://blog.plover.com/Unix/tools.html">mjd on the Unix philosophy, with an aside into the mess of /usr/bin/time vs. built-in time</a>.</p>
+
+<p><a href="https://groups.google.com/forum/m/#!topic/rec.humor.funny/Q-HG4LpW564">mjd making a joke about the proliferation of command line options in 1991</a>.</p>
+
+<p>On HN:</p>
+
+<blockquote>
+<blockquote>
+<p>p1mrx:</p>
+
+<p><a href="https://unix.stackexchange.com/q/112125/261842">It's strange that ls has grown to 58 options, but still can't output \0-terminated filenames</a></p>
+
+<p>As an exercise, try to sort a directory by size or date, and pass the result to xargs, while supporting any valid filename. I eventually just gave up and made my script ignore any filenames containing \n.</p>
+</blockquote>
+
+<p>whelming_wave:</p>
+
+<p>Here you go: sort all files in the current directory by modification time, whitespace-in-filenames-safe.
+The <code>printf (od -&gt; sed)' construction converts back out of null-separated characters into newline-separated, though feel free to replace that with anything accepting null-separated input. Granted,</code>sort --zero-terminated' is a GNU extension and kinda cheating, but it's even available on macOS so it's probably fine.</p>
+</blockquote>
+
+<pre><code>      printf '%b' $(
+        find . -maxdepth 1 -exec sh -c '
+          printf '\''%s %s\0'\'' &quot;$(stat -f '\''%m'\'' &quot;$1&quot;)&quot; &quot;$1&quot;
+        ' sh {} \; | \
+        sort --zero-terminated | \
+        od -v -b | \
+        sed 's/^[^ ]*//
+      s/ *$//
+      s/  */ \\/g
+      s/\\000/\\012/g')
+</code></pre>
+
+<blockquote>
+<p>If you're running this under zsh, you'll need to prefix it with `command' to use the system executable: zsh's builtin printf doesn't support printing octal escape codes for normally printable characters, and you may have to assign the output to a variable and explicitly word-split it.</p>
+
+<p>This is all POSIX as far as I know, except for the sort.</p>
+</blockquote>
+
+<p><a href="https://en.wikipedia.org/wiki/The_Unix-Haters_Handbook">The Unix haters handbook</a>.</p>
+
+<p><a href="http://www.oilshell.org/blog/2018/01/28.html">Why create a new shell</a>?</p>
+
+<p><small>
+Thanks to Leah Hanson, Jesse Luehrs, Hillel Wayne, Wesley Aptekar-Cassels, Mark Jason Dominus, Travis Downs, and Yuri Vishnevsky for comments/corrections/discussion.
+</small></p>
+
+<p><link rel="prefetch" href="/mcilroy-unix/">
+<link rel="prefetch" href="/">
+<link rel="prefetch" href="/discontinuities/">
+<link rel="prefetch" href="/about/"></p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:M">This quote is slightly different than the version I've seen everywhere because I watched <a href="https://archive.org/details/DougMcIlroy_AncestryOfLinux_DLSLUG">the source video</a>. AFAICT, every copy of this quote that's on the internet (indexed by Bing, DuckDuckGo, or Google) is a copy of one person's transcription of the quote. There's some ambiguity because the audio is low quality and I hear something a bit different than whoever transcribed that quote heard.
+ <a class="footnote-return" href="#fnref:M"><sup>[return]</sup></a></li>
+<li id="fn:T">Another example of something where the user absorbs the complexity because different commands handle formatting differently is <a href="https://blog.plover.com/Unix/tools.html">time formatting</a> — the shell builtin <code>time</code> is, of course, inconsistent with <code>/usr/bin/time</code> and the user is expected to know this and know how to handle it.
+ <a class="footnote-return" href="#fnref:T"><sup>[return]</sup></a></li>
+
+<li id="fn:W"><p>Just for example, you can use <code>ConvertTo-Json</code> or <code>ConvertTo-CSV</code> on any object, you <a href="https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view">can use cmdlets to change how properties are displayed for objects</a>, and you can write formatting configuration files that define how you prefer things to be formatted.</p>
+
+<p>Another way to look at this is through the lens of <a href="https://en.wikipedia.org/wiki/Conway's_law">Conway's law</a>. If we have a set of command line tools that are built by different people, often not organizationally connected, the tools are going to be wildly inconsistent unless someone can define a standard and get people to adopt it. This actually works relatively well on Windows, and not just in PowerShell.</p>
+
+<p>A common complaint about Microsoft is that they've created massive API churn, often for non-technical organizational reasons (e.g., a Sinofsky power play, like the one described in the replies to the now-deleted Tweet at <a href="https://twitter.com/stevesi/status/733654590034300929">https://twitter.com/stevesi/status/733654590034300929</a>). It's true. Even so, from the standpoint of a naive user, off-the-shelf Windows software is generally a lot better at passing non-textual data around than *nix. One thing this falls out of is Windows's embracing of non-textual data, which goes back at least to <a href="https://en.wikipedia.org/wiki/Component_Object_Model">COM</a> in 1999 (and arguably OLE and DDE, released in 1990 and 1987, respectively).</p>
+
+<p>For example, if you copy from Foo, which supports binary formats <code>A</code> and <code>B</code>, into Bar, which supports formats <code>B</code> and <code>C</code> and you then copy from Bar into Baz, which supports <code>C</code> and <code>D</code>, this will work even though Foo and Baz have no commonly supported formats. </p>
+
+<p>When you cut/copy something, the application basically &quot;tells&quot; the clipboard what formats it could provide data in. When you paste into the application, the destination application can request the data in any of the formats in which it's available. If the data is already in the clipboard, &quot;Windows&quot; provides it. If it isn't, Windows gets the data from the source application and then gives to the destination application and a copy is saved for some length of time in Windows. If you &quot;cut&quot; from Excel it will tell &quot;you&quot; that it has the data available in many tens of formats. This kind of system is pretty good for compatibility, although it definitely isn't simple or minimal.</p>
+
+<p>In addition to nicely supporting many different formats and doing so for long enough that a lot of software plays nicely with this, Windows also generally has nicer clipboard support out of the box.</p>
+
+<p>Let's say you copy and then paste a small amount of text. Most of the time, this will work like you'd expect on both Windows and Linux. But now let's say you copy some text, close the program you copied from, and then paste it. A mental model that a lot of people have is that when they copy, the data is stored in the clipboard, not in the program being copied from. On Windows, software is typically written to conform to this expectation (although, technically, users of the clipboard API don't have to do this). This is less common on Linux with X, where the correct mental model for most software is that copying stores a pointer to the data, which is still owned by the program the data was copied from, which means that paste won't work if the program is closed. When I've (informally) surveyed programmers, they're usually surprised by this if they haven't actually done copy+paste related work for an application. When I've surveyed non-programmers, they tend to find the behavior to be confusing as well as surprising.</p>
+
+<p>The downside of having the OS effectively own the contents of the clipboard is that it's expensive to copy large amounts of data. Let's say you copy a really large amount of text, many gigabytes, or some complex object and then never paste it. You don't really want to copy that data from your program into the OS so that it can be available. Windows also handles this reasonably: applications can <a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpeclip/fa309d1b-8034-44bf-b927-adfc753e69c1">provide data only on request</a> when that's deemed advantageous. In the case mentioned above, when someone closes the program, the program can decide whether or not it should push that data into the clipboard or discard it. In that circumstance, a lot of software (e.g., Excel) will prompt to &quot;keep&quot; the data in the clipboard or discard it, which is pretty reasonable.</p>
+
+<p>It's not impossible to support some of this on Linux. For example, <a href="https://freedesktop.org/wiki/ClipboardManager/">the ClipboardManager spec</a> describes a persistence mechanism and GNOME applications generally kind of sort of support it (although <a href="https://bugzilla.gnome.org/show_bug.cgi?id=510204#c8">there are some bugs</a>) but the situation on *nix is really different from the more pervasive support Windows applications tend to have for nice clipboard behavior.</p>
+ <a class="footnote-return" href="#fnref:W"><sup>[return]</sup></a></li>
+
+<li id="fn:C"><p>Another example of this are tools that are available on top of modern compilers. If we go back and look at McIlroy's canonical example, how proper UNIX compilers are so specialized that listings are a separate tool, we can see that this has changed even if there's still a separate tool you can use for listings. Some commonly used Linux compilers have literally thousands of options and do many things. For example, one of the many things <code>clang</code> now does is static analysis. As of this writing, <a href="https://clang.llvm.org/docs/analyzer/checkers.html#default-checkers">there are 79 normal static analysis checks and 44 experimental checks</a>. If these were separate commands (perhaps individual commands or perhaps a <code>static_analysis</code> command, they'd still rely on the same underlying compiler infrastructure and impose the same maintenance burden — it's not really reasonable to have these static analysis tools operate on plain text and reimplement the entire compiler toolchain necessary to get the point where they can do static analysis. They could be separate commands instead of bundled into <code>clang</code>, but they'd still take a dependency on the same machinery that's used for the compiler and either impose a maintenance and complexity burden on the compiler (which has to support non-breaking interfaces for the tools built on top) or they'd break all the time.</p>
+
+<p>Just make everything text so that it's simple makes for a nice soundbite, but in reality the textual representation of the data is often not what you want if you want to do actually useful work.</p>
+
+<p>And on clang in particular, whether you make it a monolithic command or thousands of smaller commands, clang simply does more than any compiler that existed in 1979 or even all compilers that existed in 1979 combined. It's easy to say that things were simpler in 1979 and that us modern programmers have lost our way. It's harder to actually propose a design that's actually much simpler and could really get adopted. It's impossible that such a design could maintain all of the existing functionality and configurability and be as simple as something from 1979.</p>
+ <a class="footnote-return" href="#fnref:C"><sup>[return]</sup></a></li>
+<li id="fn:P">Since its inception, curl has gone from supporting 3 protocols to 40. Does that mean it does 40 things and it would be more &quot;UNIX-y&quot; to split it up into 40 separate commands? Depends on who you ask. If each protocol were its own command, created and maintained by a different person, we'd be in the same situation we are with other commands. Inconsistent command line options, inconsistent output formats despite it all being text streams, etc. Would that be closer to the simplicity McIlroy advocates for? Depends on who you ask.
+ <a class="footnote-return" href="#fnref:P"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+</main><nav><div class="np">
+<a href="https://danluu.com/corp-eng-blogs/">← How (some) good corporate engineering blogs are written</a>
+<a href="https://danluu.com/discontinuities/">Suspicious discontinuities →</a>
+</div></body>
+<footer><div class="np">
+<a href="https://danluu.com/">Archive</a>
+<a href="https://www.patreon.com/danluu">Patreon</a>
+<a href="https://mastodon.social/@danluu">Mastodon</a>
+</div>
+<div class="np">
+<a href="https://www.linkedin.com/in/danluu/">LinkedIn</a>
+<a href="https://twitter.com/danluu/">Twitter</a>
+<a href="https://danluu.com/atom.xml">RSS</a></footer>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6bf1f55ee9e7400f8097ccc6b6fd6b0d"}'></script>

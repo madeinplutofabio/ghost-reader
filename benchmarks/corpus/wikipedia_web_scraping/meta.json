@@ -1,0 +1,12 @@
+{
+  "byte_length": 165897,
+  "content_hash_sha256": "0092bb46b66b609500a5a8b2c5c946ce6d3740dc6e658d09fe50d178456e64fe",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T20:59:57Z",
+  "final_url": "https://en.wikipedia.org/wiki/Web_scraping",
+  "fixture_id": "wikipedia_web_scraping",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://en.wikipedia.org/wiki/Web_scraping",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

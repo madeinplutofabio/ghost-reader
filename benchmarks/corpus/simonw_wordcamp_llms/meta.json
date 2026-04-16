@@ -1,0 +1,12 @@
+{
+  "byte_length": 118068,
+  "content_hash_sha256": "cfa37e7d408de15327b490ac1d961cba401ccf01073b61476f3eae513e6d21a3",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:23:49Z",
+  "final_url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/",
+  "fixture_id": "simonw_wordcamp_llms",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

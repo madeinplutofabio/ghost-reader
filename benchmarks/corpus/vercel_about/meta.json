@@ -1,0 +1,13 @@
+{
+  "byte_length": 631610,
+  "content_hash_sha256": "379f2bfaf56cee87dc88b583871859393c600ea3f6653b53dd6cff97ad1b9836",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T23:06:43Z",
+  "final_url": "https://vercel.com/about",
+  "fixture_id": "vercel_about",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://vercel.com/about",
+  "status_code": 200,
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

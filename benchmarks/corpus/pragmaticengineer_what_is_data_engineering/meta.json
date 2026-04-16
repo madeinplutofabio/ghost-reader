@@ -1,0 +1,12 @@
+{
+  "byte_length": 65826,
+  "content_hash_sha256": "fc73334cdec6550e3ba91e68946cad60952ea9cedbc1d989bca2c307e100ecd9",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:23:50Z",
+  "final_url": "https://blog.pragmaticengineer.com/what-is-data-engineering/",
+  "fixture_id": "pragmaticengineer_what_is_data_engineering",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://blog.pragmaticengineer.com/what-is-data-engineering",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

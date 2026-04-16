@@ -1,0 +1,12 @@
+{
+  "byte_length": 245974,
+  "content_hash_sha256": "39e83abe8679531679d082c48c06cdf3e00df2484daac634509e964871660fba",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T22:35:12Z",
+  "final_url": "https://vercel.com/login?next=%2Ftotally-made-up-path-xyz12345",
+  "fixture_id": "vercel_soft_404",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://vercel.com/totally-made-up-path-xyz12345",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

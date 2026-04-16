@@ -1,0 +1,12 @@
+{
+  "byte_length": 299115,
+  "content_hash_sha256": "d997dc068aab84dd27ebf74eae64bec4c9ef959e43c632505f16e5401d52b5b2",
+  "content_type": "text/html; charset=utf-8",
+  "fetched_at": "2026-04-15T21:00:52Z",
+  "final_url": "https://nextjs.org/blog/next-14",
+  "fixture_id": "nextjs_blog_next14",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://nextjs.org/blog/next-14",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}

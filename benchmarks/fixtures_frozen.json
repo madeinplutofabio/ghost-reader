@@ -1,0 +1,451 @@
+{
+  "schema_version": 1,
+  "_comment": "Provenance (fetched_at, content_hash) lives in corpus/<id>/meta.json, written by the capture helper. It is intentionally NOT duplicated on the fixture entry to avoid drift. Optional per-fixture fields: expected_outcome ('success' default | 'partial' | 'graceful_failure') controls which quality checks gate quality_pass — for non-success fixtures only forbidden_clean, method_allowed, and latency_band_ok gate; the rest become diagnostic-only observations. allowed_methods is a hard correctness gate (e.g. 'must not silently render Playwright on a 404') and is distinct from preferred_methods, which remains a soft efficiency hint. Edge-case fixtures (expected_outcome != 'success') are excluded from --tune-thresholds because they measure graceful failure, not extraction quality.",
+  "fixtures": [
+    {
+      "id": "wikipedia_web_scraping",
+      "source_url": "https://en.wikipedia.org/wiki/Web_scraping",
+      "category": "wikipedia",
+      "html_path": "corpus/wikipedia_web_scraping/page.html",
+      "expected_title_contains": "Web scraping",
+      "required_phrases": [
+        "extracting data from websites",
+        "World Wide Web"
+      ],
+      "forbidden_phrases": [
+        "Cookie preferences",
+        "Create account"
+      ],
+      "min_word_count": 1500,
+      "max_word_count": 12000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Long-form Wikipedia article. Stage 1 (trafilatura) should dominate."
+    },
+    {
+      "id": "python_docs_asyncio",
+      "source_url": "https://docs.python.org/3/library/asyncio.html",
+      "category": "documentation",
+      "html_path": "corpus/python_docs_asyncio/page.html",
+      "expected_title_contains": "asyncio",
+      "required_phrases": [
+        "asyncio is a library",
+        "run Python coroutines concurrently"
+      ],
+      "forbidden_phrases": [
+        "Quick search"
+      ],
+      "min_word_count": 200,
+      "max_word_count": 8000,
+      "preferred_methods": ["raw_html"],
+      "notes": "Sphinx-generated Python docs. Tests Stage 1 on structured technical prose. Phrases chosen to survive trafilatura's markdown rendering — 'write **concurrent** code' loses the literal substring to bold delimiters, so we anchor on plainer wording instead."
+    },
+    {
+      "id": "mdn_fetch_api",
+      "source_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+      "category": "documentation",
+      "html_path": "corpus/mdn_fetch_api/page.html",
+      "expected_title_contains": "Fetch API",
+      "required_phrases": [
+        "Fetch API provides an interface",
+        "XMLHttpRequest"
+      ],
+      "forbidden_phrases": [
+        "Skip to main content"
+      ],
+      "min_word_count": 300,
+      "max_word_count": 10000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "MDN article. Carries JSON-LD metadata; Stage 2 may contribute. Phrases anchor on substrings that survive trafilatura's markdown — Request/Response/fetch() get wrapped in backticks so we don't assert against them directly."
+    },
+    {
+      "id": "nextjs_blog_next14",
+      "source_url": "https://nextjs.org/blog/next-14",
+      "category": "nextjs_spa",
+      "html_path": "corpus/nextjs_blog_next14/page.html",
+      "expected_title_contains": "Next.js 14",
+      "required_phrases": [
+        "Server Actions",
+        "Turbopack"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 400,
+      "max_word_count": 5000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Next.js blog post. __NEXT_DATA__ is present; may come out at either raw_html or embedded_data depending on snapshot — both accepted."
+    },
+    {
+      "id": "guardian_raw_materials_extraction",
+      "source_url": "https://www.theguardian.com/environment/2024/jan/31/raw-materials-extraction-2060-un-report",
+      "category": "long_form_news",
+      "html_path": "corpus/guardian_raw_materials_extraction/page.html",
+      "expected_title_contains": "Extraction of raw materials",
+      "required_phrases": [
+        "global extraction of raw materials",
+        "UN Global Resource Outlook"
+      ],
+      "forbidden_phrases": [
+        "Sign up to",
+        "Most viewed"
+      ],
+      "min_word_count": 600,
+      "max_word_count": 1500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Guardian environment longread. Stage 1 dominates (conf ~0.96 on capture). Phrases anchor on substantive article content, not the headline (more drift-resistant)."
+    },
+    {
+      "id": "apnews_2024_hottest_year",
+      "source_url": "https://apnews.com/article/climate-change-warming-hot-record-2024-disasters-12f899f071fcdbd051ad49a872611e92",
+      "category": "long_form_news",
+      "html_path": "corpus/apnews_2024_hottest_year/page.html",
+      "expected_title_contains": "lurches past dangerous warming threshold",
+      "required_phrases": [
+        "hottest year ever in 2024",
+        "Copernicus Climate Service"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 900,
+      "max_word_count": 1500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "AP wire-feature on the 2024 heat record. Stage 1 dominates (conf ~0.94). No forbidden_phrases configured: AP's article template tails (byline social handle, climate-coverage attribution, foundations disclosure) are real article content, not extraction pollution. Title substring chosen for distinctiveness — 'Earth breaks yearly heat record' would match any year's record headline; 'lurches past dangerous warming threshold' is unique to this story."
+    },
+    {
+      "id": "guardian_frankincense_extinction",
+      "source_url": "https://www.theguardian.com/environment/2024/sep/16/frankincense-trees-extinction-resin-trade-africa-arabia-western-wellness-industry-fragrance",
+      "category": "long_form_news",
+      "html_path": "corpus/guardian_frankincense_extinction/page.html",
+      "expected_title_contains": "frankincense",
+      "required_phrases": [
+        "Horn of Africa",
+        "wellness industry"
+      ],
+      "forbidden_phrases": [
+        "Sign up to",
+        "Most viewed"
+      ],
+      "min_word_count": 1500,
+      "max_word_count": 2500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Guardian environment narrative feature. Stage 1 dominates (conf ~0.98). Phrases anchor on a proper noun (Horn of Africa) plus a substantive theme phrase that's central to the story (wellness industry). Forbidden phrases probe for Guardian template leaks — same set as guardian_raw_materials_extraction so any breakage is uniform."
+    },
+    {
+      "id": "nextjs_docs_home",
+      "source_url": "https://nextjs.org/docs",
+      "category": "hydration_heavy",
+      "html_path": "corpus/nextjs_docs_home/page.html",
+      "expected_title_contains": "Next.js Docs",
+      "required_phrases": [
+        "React framework",
+        "App Router"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 300,
+      "max_word_count": 800,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Next.js docs landing. Hydration-heavy framework page; Stage 1 still wins on capture (conf ~0.77) — the SSR'd content is substantial enough that embedded_data doesn't get triggered. preferred_methods accepts both so the finding (Stage 1 dominant) shows up in aggregate stats rather than being hidden behind a green check."
+    },
+    {
+      "id": "prisma_docs_orm",
+      "source_url": "https://www.prisma.io/docs/orm",
+      "category": "hydration_heavy",
+      "html_path": "corpus/prisma_docs_orm/page.html",
+      "expected_title_contains": "Prisma ORM",
+      "required_phrases": [
+        "type-safe database access",
+        "Prisma Client"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 250,
+      "max_word_count": 700,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Prisma ORM docs landing. Non-Vercel modern docs stack. Stage 1 wins on capture (conf ~0.69) — same finding as nextjs_docs_home: SSR'd content sufficient for trafilatura to clear threshold. Useful as a non-Next complement so the finding isn't an artifact of one framework."
+    },
+    {
+      "id": "discourse_new_user_tips",
+      "source_url": "https://meta.discourse.org/t/discourse-new-user-tips-and-tricks/54341",
+      "category": "hydration_heavy",
+      "html_path": "corpus/discourse_new_user_tips/page.html",
+      "expected_title_contains": "Discourse New User Tips",
+      "required_phrases": [
+        "every new Discourse user should know",
+        "Selecting a title from the topic list"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 700,
+      "max_word_count": 1500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Discourse forum thread (Ember app shell). Different shape from docs sites — multiple post bodies concatenated. Discourse SSRs first-page posts for SEO so Stage 1 finds them (conf ~0.88), even though the live app is heavily hydrated. Phrases anchor on a distinctive bold callout from the OP and a concrete tip — both verifiable substrings in current extraction."
+    },
+    {
+      "id": "hn_side_projects_2024",
+      "source_url": "https://news.ycombinator.com/item?id=42373343",
+      "category": "aggregator",
+      "html_path": "corpus/hn_side_projects_2024/page.html",
+      "expected_title_contains": "$500/month on side projects",
+      "required_phrases": [
+        "interactive Music Theory course",
+        "Stripe for payments"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 18000,
+      "max_word_count": 26000,
+      "latency_ms_ceiling": 3500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Hacker News thread (Show & Tell). Old-school table-layout HTML still extracts cleanly via Stage 1 (conf ~0.94, ~22k words). Word-count band brackets the captured artifact tightly — this is a frozen snapshot, so the band reflects what we got, not hypothetical thread growth. Phrases anchor on distinctive first-comment content (Music Theory course, Stripe) so any major extraction regression that drops the early thread would fail required_recall. Latency ceiling raised to 3500ms (vs default 2000ms) because trafilatura on a 22k-word thread legitimately runs longer; this is fixture-shape, not regression."
+    },
+    {
+      "id": "github_discussion_feedback_app_dir",
+      "source_url": "https://github.com/vercel/next.js/discussions/41745",
+      "category": "aggregator",
+      "html_path": "corpus/github_discussion_feedback_app_dir/page.html",
+      "expected_title_contains": "App Directory Beta",
+      "required_phrases": [
+        "App Router is now stable",
+        "thousands of replies in this discussion"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 200,
+      "max_word_count": 600,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "GitHub Discussions thread. Known v0.2 extraction limitation: GitHub UI chrome leaks into the body ('Beta Was this translation helpful? Give feedback.' repeats per-reply). The fixture intentionally does not assert against this chrome yet — adding it to forbidden_phrases would fail today, and the harness has no 'known failure but allowed' state by design. Planned v0.3 tightening target: improve extractor's GitHub Discussions handling, then add the chrome strings to forbidden_phrases as a regression guard."
+    },
+    {
+      "id": "github_issue_inconsistent_singleton",
+      "source_url": "https://github.com/vercel/next.js/issues/65350",
+      "category": "aggregator",
+      "html_path": "corpus/github_issue_inconsistent_singleton/page.html",
+      "expected_title_contains": "Inconsistent Singleton",
+      "required_phrases": [
+        "singleton module",
+        "reproduction repository"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 350,
+      "max_word_count": 800,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "GitHub Issue. Same known v0.2 extraction limitation as github_discussion_feedback_app_dir: auth chrome leaks at the top of the body ('You signed in with another tab', 'Dismiss alert'). Fixture intentionally does not assert against this chrome yet; planned v0.3 tightening target."
+    },
+    {
+      "id": "bbcgoodfood_chocolate_brownies",
+      "source_url": "https://www.bbcgoodfood.com/recipes/best-ever-chocolate-brownies-recipe",
+      "category": "jsonld_heavy",
+      "html_path": "corpus/bbcgoodfood_chocolate_brownies/page.html",
+      "expected_title_contains": "chocolate brownies",
+      "required_phrases": [
+        "185g unsalted butter",
+        "squidgy chocolate bake"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 500,
+      "max_word_count": 1100,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "BBC Good Food editorial recipe page with rich Recipe JSON-LD (ingredients, method, nutrition). Stage 1 wins (conf ~0.83, raw_html, ~731 words) — Stage 2 does not fire despite the structured data being present, because the SSR'd body already contains the ingredient list and method steps. Required phrases anchor on a distinctive ingredient line and the intro descriptor ('squidgy chocolate bake'). Note: a few method-step headings render as empty (### step 1, ### step 2) because in the source those steps are illustrated only by images; that's the page, not extraction loss."
+    },
+    {
+      "id": "sallys_chewy_chocolate_chip_cookies",
+      "source_url": "https://sallysbakingaddiction.com/chewy-chocolate-chip-cookies/",
+      "category": "jsonld_heavy",
+      "html_path": "corpus/sallys_chewy_chocolate_chip_cookies/page.html",
+      "expected_title_contains": "Chocolate Chip Cookies",
+      "required_phrases": [
+        "chewiest chocolate chip cookie texture",
+        "extra egg yolk"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 2700,
+      "max_word_count": 3300,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Indie WordPress + WP Recipe Maker stack — the most common 'preamble + structured recipe block' shape on the open web. Carries Recipe JSON-LD, but Stage 1 wins easily (conf ~0.90, raw_html, ~3000 words). The high word count includes the page's comments tail; that's content, not chrome, and on a frozen snapshot it's deterministic. Required phrases anchor on the distinctive intro descriptor and a recipe-specific technique callout. Same finding as bbcgoodfood_chocolate_brownies: Stage 2 (embedded_data) does not fire on canonical Recipe-JSON-LD pages because the body is already extractable — across two very different stacks (UK editorial CMS vs indie WordPress)."
+    },
+    {
+      "id": "danluu_cli_complexity",
+      "source_url": "https://danluu.com/cli-complexity/",
+      "category": "tech_blog",
+      "html_path": "corpus/danluu_cli_complexity/page.html",
+      "expected_title_contains": "command line options",
+      "required_phrases": [
+        "do one thing and do it well",
+        "curl has gone from supporting 3 protocols to 40"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 4000,
+      "max_word_count": 5000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Old-school personal-site HTML (danluu.com — minimal CSS, hand-authored markup, footnote-heavy). Stage 1 dominates (conf ~0.89, raw_html, ~4500 words). Required phrases anchor on the McIlroy dictum (central thesis) and a distinctive concrete claim from the footnotes — both verifiable substrings in current extraction. Useful as a 'plain HTML longform essay' fixture: a class of page that's cheap to extract well and represents a non-trivial fraction of substantive technical writing on the open web."
+    },
+    {
+      "id": "simonw_wordcamp_llms",
+      "source_url": "https://simonwillison.net/2023/Aug/27/wordcamp-llms/",
+      "category": "tech_blog",
+      "html_path": "corpus/simonw_wordcamp_llms/page.html",
+      "expected_title_contains": "Large Language Models",
+      "required_phrases": [
+        "WordCamp 2023",
+        "Retrieval augmented generation"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 9300,
+      "max_word_count": 10500,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Modern indie technical blog (Django stack — simonwillison.net). Stage 1 dominates (conf ~0.90, raw_html, ~9900 words). Long-form annotated talk transcript with code, headings, and embedded media. Known v0.2 extraction limitation: the page's 'More recent articles' sidebar tail (~100 words of unrelated dated entries) gets concatenated into extracted text. Same handling as the GitHub fixtures — fixture intentionally does not assert against this tail today (forbidden_phrases stays empty); planned v0.3 tightening target is to detect related-post tails and exclude them, then add 'More recent articles' to forbidden_phrases as a regression guard. Lower word-count bound (9300) is set slightly below the observed ~9900 to absorb minor body-extraction drift if/when the tail is later excluded."
+    },
+    {
+      "id": "pragmaticengineer_what_is_data_engineering",
+      "source_url": "https://blog.pragmaticengineer.com/what-is-data-engineering",
+      "category": "tech_blog",
+      "html_path": "corpus/pragmaticengineer_what_is_data_engineering/page.html",
+      "expected_title_contains": "Data Engineering",
+      "required_phrases": [
+        "Seattle Data Guy",
+        "data engineering is a field"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 3800,
+      "max_word_count": 4300,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Newsletter / platform stack (Pragmatic Engineer on a Substack-style platform). Stage 1 hits conf 1.000, raw_html, ~4000 words — the cleanest extraction in the corpus. Newsletter intro ('Hi, this is Gergely...') and outro subscription pitch are present but hand-authored per issue rather than templated chrome, so they aren't pursued as a tightening target. Required phrases anchor on a distinctive proper-noun reference (the co-author byline) and a substantive thesis fragment."
+    },
+    {
+      "id": "gohugo_404",
+      "source_url": "https://gohugo.io/totally-made-up-xyz12345",
+      "category": "edge_cases",
+      "html_path": "corpus/gohugo_404/page.html",
+      "expected_outcome": "graceful_failure",
+      "expected_status_code": 404,
+      "expected_title_contains": "Page not found",
+      "required_phrases": [],
+      "forbidden_phrases": [],
+      "min_word_count": 0,
+      "max_word_count": 50,
+      "allowed_methods": ["best_effort"],
+      "notes": "Real HTTP 404 from a Hugo docs site, captured via --allow-404 (status_code=404 recorded in meta.json). Tests extractor behavior on a real-world error-page HTML body. Outcome: method=best_effort, confidence=0.200, title='404 Page not found', body=21 words (just the site footer copyright line — the actual 'Page not found' renders as a standalone heading without paragraph context, so trafilatura correctly filters it out of body text). The not-found signal is in the title; the body is intentionally bare. allowed_methods pinned to ['best_effort'] as the core invariant — if a future extractor change starts returning raw_html with substantive content here, that's either a real win (re-classify the fixture) or a regression where we render Hugo's sidebar nav as if it were article content. Complement to vercel_js_required_shell: that one tests JS-required SPA shells (no content known, no title); this one tests real 404 HTML bodies (title carries the signal, body is content-poor)."
+    },
+    {
+      "id": "vercel_js_required_shell",
+      "source_url": "https://vercel.com/totally-made-up-path-xyz12345",
+      "category": "edge_cases",
+      "html_path": "corpus/vercel_js_required_shell/page.html",
+      "expected_outcome": "graceful_failure",
+      "expected_title_contains": "Overview",
+      "required_phrases": [],
+      "forbidden_phrases": [],
+      "min_word_count": 0,
+      "max_word_count": 50,
+      "allowed_methods": ["best_effort"],
+      "notes": "JS-required SPA shell. Vercel's marketing site renders any unknown route as the same client-side shell — the SSR'd HTML carries the default site title ('Overview – Vercel'), no rendered body, and the literal '404' appears exactly once in the entire 246KB document (buried in a JSON config blob, not as visible text). The extractor handles this correctly: returns method=best_effort, confidence=0.100, text_len=0 — refusing to fabricate content rather than scraping JSON guts. allowed_methods is pinned to ['best_effort'] because that's the gate this fixture exists to enforce: if a future extractor change starts returning raw_html or embedded_data here, that's either a real win (in which case re-classify the fixture) or a regression where we silently render config-blob garbage. URL is intentionally a non-existent route — the test isn't 'is this page a 404' (it doesn't know it is), it's 'does the extractor degrade gracefully on a content-free SPA shell'. expected_title_contains is diagnostic-only under graceful_failure; included so the default site title shows up as an observed signal in run output."
+    },
+    {
+      "id": "wikipedia_mercury_disambiguation",
+      "source_url": "https://en.wikipedia.org/wiki/Mercury_(disambiguation)",
+      "category": "edge_cases",
+      "html_path": "corpus/wikipedia_mercury_disambiguation/page.html",
+      "expected_outcome": "partial",
+      "expected_title_contains": "Mercury - Wikipedia",
+      "required_phrases": [
+        "Mercury (planet)",
+        "Mercury (element)"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 800,
+      "max_word_count": 1200,
+      "allowed_methods": ["raw_html", "embedded_data"],
+      "notes": "Wikipedia disambiguation page (Mercury — element / planet / mythology / brands / programming language / etc). Tests extractor on a 'text exists, but no article prose' shape. Outcome: extractor does NOT reject this — surfaces the disambig list as content via raw_html (conf ~0.71, ~976 words), structurally faithful as bullet markdown. That's defensible behavior: a user asking for 'Mercury' probably wants this list of meanings. Required phrases anchor on the two most canonical entries (planet, element) which are durable across any conceivable Wikipedia disambig revision. expected_outcome=partial because quality assertions here are interpretive — the page is real content, but it's not an article in the conventional sense, so the title and required-phrase checks are diagnostic rather than strict gates. allowed_methods pinned to raw_html/embedded_data: if a future extractor change starts returning best_effort here, that's a behavior shift worth flagging — current behavior surfaces useful content, retreating to best_effort would lose it. Mild known chrome leak: 'Appearance' (Wikipedia interface tab text) leaks at the very start of body — same class as other Wikipedia chrome leaks in the corpus, planned v0.3 tightening target across all wiki fixtures rather than one-off here."
+    },
+    {
+      "id": "wikipedia_photosynthesis",
+      "source_url": "https://en.wikipedia.org/wiki/Photosynthesis",
+      "category": "wikipedia",
+      "html_path": "corpus/wikipedia_photosynthesis/page.html",
+      "expected_title_contains": "Photosynthesis - Wikipedia",
+      "required_phrases": [
+        "oxygenic photosynthesis",
+        "light energy"
+      ],
+      "forbidden_phrases": ["Cookie preferences", "Create account"],
+      "min_word_count": 12000,
+      "max_word_count": 12300,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "Long-form Wikipedia science article (biology). Stage 1 dominates with the highest observed confidence in the corpus (conf ~0.95, raw_html, ~11k words). Companion to wikipedia_web_scraping, which is a CS topic — together they exercise extraction across two very different Wikipedia article shapes. Required phrases anchor on substantive scientific terms central to the article, both durable across any reasonable Wikipedia revision."
+    },
+    {
+      "id": "rust_book_ch1_1",
+      "source_url": "https://doc.rust-lang.org/book/ch01-01-installation.html",
+      "category": "documentation",
+      "html_path": "corpus/rust_book_ch1_1/page.html",
+      "expected_title_contains": "Installation - The Rust Programming Language",
+      "required_phrases": [
+        "rustup",
+        "Other Rust Installation Methods"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 800,
+      "max_word_count": 1000,
+      "preferred_methods": ["raw_html", "embedded_data"],
+      "notes": "mdbook-generated docs site (The Rust Programming Language Book). Stage 1 wins (conf ~0.79, raw_html, ~903 words). Useful as a non-Sphinx, non-MDN docs stack — mdbook is a different generator family with its own templating. Required phrases anchor on the central tool name (rustup) and a distinctive in-page section reference."
+    },
+    {
+      "id": "vercel_about",
+      "source_url": "https://vercel.com/about",
+      "category": "nextjs_spa",
+      "html_path": "corpus/vercel_about/page.html",
+      "expected_outcome": "partial",
+      "expected_title_contains": "About Us – Vercel",
+      "required_phrases": [
+        "Vercel enables the world to ship",
+        "Frontend Cloud"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 50,
+      "max_word_count": 200,
+      "preferred_methods": ["raw_html", "embedded_data", "best_effort"],
+      "allowed_methods": ["raw_html", "embedded_data", "best_effort"],
+      "notes": "Companion to nextjs_blog_next14, deliberately picked as a contrast: same framework (Next.js), opposite SSR strategy. The blog post ships rich SSR'd article content (Stage 1 dominates). This About page ships almost entirely JS-rendered — the SSR HTML carries only the hero tagline plus three short feature blurbs (Easy/Universal/Accessible). Outcome: method=best_effort, conf=0.410, ~61 words. The extractor correctly recovers what little SSR content exists rather than fabricating from JSON blobs. Useful finding: modern Next.js marketing pages can be JS-shell-shaped even when the framework is capable of full SSR. Required phrases anchor on the durable hero tagline and Vercel's product label, both of which live in the SSR'd shell. expected_outcome=partial because the page does carry real SSR content (unlike vercel_js_required_shell which is a pure shell), just much less than a typical article. allowed_methods kept permissive: if a future Vercel redesign starts SSR-ing the full About page, the extractor returning raw_html with substantive content would be a real improvement, not a regression."
+    },
+    {
+      "id": "hn_newswelcome",
+      "source_url": "https://news.ycombinator.com/newswelcome.html",
+      "category": "short_static",
+      "html_path": "corpus/hn_newswelcome/page.html",
+      "expected_title_contains": "Hacker News: Welcome",
+      "required_phrases": [
+        "Hacker News is a bit different",
+        "civility"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 350,
+      "max_word_count": 500,
+      "preferred_methods": ["raw_html"],
+      "notes": "HN's static welcome essay — old-school table-layout HTML on Y Combinator's forum platform. Stage 1 wins easily (conf ~0.92, raw_html, ~406 words). Useful short_static fixture in a different shape from example.com (IANA reserved landing) and json_org_landing (legacy reference page). Required phrases anchor on the distinctive opening line and the central principle PG calls out at the end."
+    },
+    {
+      "id": "json_org_landing",
+      "source_url": "https://www.json.org/json-en.html",
+      "category": "short_static",
+      "html_path": "corpus/json_org_landing/page.html",
+      "expected_title_contains": "JSON",
+      "required_phrases": [
+        "lightweight data-interchange",
+        "ECMA-262"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 250,
+      "max_word_count": 400,
+      "preferred_methods": ["raw_html"],
+      "notes": "JSON.org reference page — classic mid-90s style HTML (Douglas Crockford's longstanding JSON spec landing). Stage 1 wins (conf ~0.80, raw_html, ~301 words). Tests extraction on legacy plain-HTML reference pages — a different shape from example.com (ultra-tiny IANA landing) and hn_newswelcome (forum-platform static essay). Required phrases anchor on the canonical defining phrase and the cited standard."
+    },
+    {
+      "id": "example_com_landing",
+      "source_url": "https://example.com/",
+      "category": "short_static",
+      "html_path": "corpus/example_com_landing/page.html",
+      "expected_title_contains": "Example Domain",
+      "required_phrases": [
+        "This domain is for use in documentation examples"
+      ],
+      "forbidden_phrases": [],
+      "min_word_count": 15,
+      "max_word_count": 200,
+      "preferred_methods": ["raw_html"],
+      "notes": "Tiny static page. Exercises the small-static-page early-accept path added in v0.1. NOTE: example.com's canonical body changed at some point — the older 'illustrative examples in documents' copy is gone, replaced with 'documentation examples without needing permission'. The fixture follows the live page."
+    }
+  ]
+}

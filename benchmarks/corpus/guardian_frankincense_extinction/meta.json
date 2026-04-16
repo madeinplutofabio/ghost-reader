@@ -1,0 +1,12 @@
+{
+  "byte_length": 397098,
+  "content_hash_sha256": "e18094ff4a8276a48b0e02d882d8969eff06d7d24f949c96b846cca58ec84869",
+  "content_type": "text/html; charset=UTF-8",
+  "fetched_at": "2026-04-15T21:44:44Z",
+  "final_url": "https://www.theguardian.com/environment/2024/sep/16/frankincense-trees-extinction-resin-trade-africa-arabia-western-wellness-industry-fragrance",
+  "fixture_id": "guardian_frankincense_extinction",
+  "respect_robots": true,
+  "schema_version": 1,
+  "source_url": "https://www.theguardian.com/environment/2024/sep/16/frankincense-trees-extinction-resin-trade-africa-arabia-western-wellness-industry-fragrance",
+  "user_agent": "GhostReader/0.1.0 (+local text retrieval broker)"
+}
